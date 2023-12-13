@@ -1,0 +1,31 @@
+// Duration
+$duration-1000: 1000s;
+$duration-700: 700ms;
+$duration-500: 500ms;
+$duration-400: 400ms;
+$duration-300: 300ms;
+$duration-200: 200ms;
+$duration-150: 150ms;
+$duration-100: 100ms;
+$duration-75: 75ms;
+$duration-0: 0s;
+
+// Transition
+$tr-basic: $duration-300 ease-in-out;
+$tr-smooth: $duration-200 cubic-bezier(0.55, 0.085, 0.68, 0.53);
+$tr-fast: $duration-100 ease-in-out;
+$tr-button: $duration-200;
+$tr-carousel: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+// Animation
+$an-skeleton: skeleton-loading 1s linear infinite alternate;
+
+// Vue Router Transition
+// .fade-enter,
+// .fade-leave-to {
+//     opacity: 0;
+// }
+// .fade-enter-active,
+// .fade-leave-active {
+//     transition: 0.3s;
+// }

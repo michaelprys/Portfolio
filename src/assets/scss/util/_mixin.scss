@@ -1,0 +1,51 @@
+@mixin underline {
+    background: linear-gradient($c-white, $c-white);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    transition: background-size $tr-smooth;
+    background-size: 0 2px;
+    &:hover {
+        background-size: 100% 2px;
+    }
+}
+
+@mixin button-style($c-btn-hvr) {
+    font-size: $fs-medium;
+    text-align: center;
+    padding: $p-3;
+    width: $w-full;
+    border-radius: $br-6;
+    transition: $tr-button;
+    color: $c-grey-1100;
+    background-color: $c-grey-100;
+    &:hover {
+        background-color: $c-btn-hvr;
+    }
+    &:active {
+        background-color: $c-grey-50;
+        box-shadow: inset 0px 0px 5px $c-grey-50;
+        outline: none;
+    }
+}
+
+@mixin bar {
+    width: $w-full;
+    height: $h-20;
+    max-width: 50rem;
+    margin-inline: $auto;
+    padding-block: $p-3_5;
+    padding-inline: $p-5;
+    border: $bw-2 solid rgba($c-white, 0.651);
+    background-color: rgba($c-black, 0.77);
+    font-size: $fs-h4;
+    color: $c-white;
+    outline: none;
+    transition: $tr-basic;
+}
+
+@mixin bg {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-shrink: 0;
+}

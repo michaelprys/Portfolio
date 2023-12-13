@@ -1,0 +1,25 @@
+// Opacity
+$op-100: 1;
+$op-95: 0.95;
+$op-90: 0.9;
+$op-80: 0.8;
+$op-75: 0.75;
+$op-70: 0.7;
+$op-60: 0.6;
+$op-50: 0.5;
+$op-40: 0.4;
+$op-30: 0.3;
+$op-25: 0.25;
+$op-20: 0.2;
+$op-10: 0.1;
+$op-5: 0.05;
+$op-0: 0;
+
+// Shadow
+$dc-shadow-light: 0 8px 16px 0 rgba(0, 0, 0, 0.329);
+$dc-shadow-dark: 8px 8px 18px $c-black;
+$dc-shadow-card: 0 6px 10px 0 rgba(0, 0, 0, 0.2);
+$dc-shadow-inner: 0 0 0.6rem rgba(0, 0, 0, 0.2);
+// Blur
+$dc-blur-hard: blur(20px);
+$dc-blur-light: blur(6px);

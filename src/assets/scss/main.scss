@@ -1,3 +1,4 @@
+@import 'util';
 @import 'base';
 
 body {
@@ -5,6 +6,11 @@ body {
     font-weight: 400;
     font-family: sans-serif;
     line-height: 1.6;
-    color: red;
-    background-color: #464646;
+    color: #e5e5e5;
+    background-color: $c-wrapper;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    // background-image: url('@img/decor/bg.jpg');
 }

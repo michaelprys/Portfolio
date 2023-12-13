@@ -1,0 +1,48 @@
+//& Position
+$relative: relative;
+$absolute: absolute;
+$static: static;
+$fixed: fixed;
+
+//& Positioning
+// Top
+$top-full: 100%;
+$top-half: 50%;
+$top-0: 0px;
+
+// Right
+$right-full: 100%;
+$right-half: 50%;
+$right-0: 0px;
+
+// Bottom
+$bottom-full: 100%;
+$bottom-half: 50%;
+$bottom-0: 0px;
+
+// Left
+$left-full: 100%;
+$left-half: 50%;
+$left-0: 0px;
+
+// Z-index
+$z-index-1000: 1000;
+$z-index-100: 100;
+$z-index-10: 10;
+$z-index-1: 1;
+$z-index-0: 0;
+
+//& Transform: translate
+// TranslateY
+$translateY-full: translateY(100%);
+$translateY-full-neg: translateY(-100%);
+$translateY-half: translateY(50%);
+$translateY-half-neg: translateY(-50%);
+$translateY-0: translateY(0);
+
+// TranslateX
+$translateX-full: translateX(100%);
+$translateX-full-neg: translateX(-100%);
+$translateX-half: translateX(50%);
+$translateX-half-neg: translateX(-50%);
+$translateX-0: translateX(0);
