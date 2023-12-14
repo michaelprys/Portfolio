@@ -19,6 +19,19 @@ $tr-carousel: cubic-bezier(0.22, 0.61, 0.36, 1);
 
 // Animation
 $an-skeleton: skeleton-loading 1s linear infinite alternate;
+$an-hanging: hanging 4s ease-in-out infinite alternate;
+
+@keyframes hanging {
+    0% {
+        transform: rotate(0deg) translateX(0%);
+    }
+    50% {
+        transform: rotate(3deg) translateX(-10%);
+    }
+    100% {
+        transform: rotate(-3deg) translateX(10%);
+    }
+}
 
 // Vue Router Transition
 // .fade-enter,

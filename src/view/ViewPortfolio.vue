@@ -1,5 +1,6 @@
 <template>
     <div class="background"></div>
+    <div class="light-mode"></div>
     <div class="wrapper">
         <div class="cover cover--left"></div>
         <div class="cover cover--right"></div>
@@ -75,8 +76,8 @@
                             <div class="profile__about">
                                 Hello, my name is Mykhailo and I am a web
                                 developer and music producer. As a musician, I
-                                can tell that music has become a direct source
-                                of inspiration for creating beautiful,
+                                feel that music has become a direct source of
+                                inspiration for creating beautiful,
                                 user-friendly web interfaces, since, in my
                                 opinion, just like music, creating a design and
                                 'bringing it to life' is also part of the art.
@@ -114,6 +115,28 @@
     width: 100%;
     min-height: 100vh;
     opacity: 80%;
+}
+
+.light-mode {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-shrink: 0;
+    background-image: url('@img/decor/light-mode-inactive.png');
+    position: absolute;
+    top: -1px;
+    right: 50px;
+    z-index: 5;
+    width: 32px;
+    height: 115.5px;
+    filter: drop-shadow(5px 5px 5px #222);
+    transition: $tr-smooth;
+    cursor: pointer;
+    &:hover {
+        filter: drop-shadow(10px 10px 10px #222);
+        animation: $an-hanging;
+        background-image: url('@img/decor/light-mode-active.png');
+    }
 }
 .wrapper {
     position: relative;
@@ -219,8 +242,15 @@
         border: $bw-4 solid $c-cover;
         z-index: 1;
     }
+    // &__name {
+    //     margin-top: $m-6;
+    //     margin-bottom: $m-4;
+    //     color: $c-text;
+    //     font-size: $fs-h3;
+    //     font-family: '1820 Modern W00 Italic';
+    // }
     &__name {
-        margin-top: $m-4;
+        margin-top: $m-3_5;
         color: $c-text;
         font-size: 2.75rem;
         font-family: 'Italianno';
@@ -229,12 +259,13 @@
         position: relative;
         color: $c-text;
         font-size: $fs-base;
-        font-style: italic;
-        margin-top: $m-3;
         margin-inline: auto;
+        font-family: 'Italianno';
+        font-size: 1.75rem;
+        margin-top: $m-2;
         &::before {
             position: absolute;
-            bottom: 35px;
+            top: -15%;
             transform: translateX(-50%);
             left: 50%;
             content: '';
@@ -246,8 +277,8 @@
     &__social {
         display: flex;
         justify-content: center;
+        align-items: center;
         gap: $g-5;
-        margin-top: $m-5;
     }
     &__social-link {
         width: 2.3rem;
@@ -259,22 +290,24 @@
         padding: 5px;
         &:hover {
             fill: $c-cover;
-            outline-color: rgba($c-cover, 65%);
+            outline-color: rgba($c-cover, 55%);
         }
     }
     &__about {
         color: $c-text;
         text-align: justify;
         margin-top: $m-5;
+        font-family: '1820 Modern W00 Italic';
+        font-size: $fs-base;
     }
     &__button {
+        margin-top: $m-7;
         margin-inline: auto;
         min-width: $w-28;
         padding: 15px;
         border-radius: $br-6;
         background-color: $c-cover;
         color: $c-white;
-        margin-top: $m-4;
         font-size: $fs-medium;
         transition: $tr-smooth;
         border: 2px solid transparent;

@@ -23,3 +23,17 @@
     font-weight: 400;
     src: url('@fonts/italianno-v17-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
+@font-face {
+    font-family: '1820 Modern W00 Normal';
+    src: url('@fonts/1820 Modern W00 Normal.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: '1820 Modern W00 Italic';
+    src: url('@fonts/1820 Modern W00 Italic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: Italic;
+}
