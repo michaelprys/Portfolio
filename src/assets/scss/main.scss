@@ -4,13 +4,12 @@
 body {
     font-size: 100%;
     font-weight: 400;
-    font-family: sans-serif;
+    font-family: Montserrat, sans-serif;
     line-height: 1.6;
-    color: #e5e5e5;
+    color: $c-white;
     background-color: $c-wrapper;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    // background-image: url('@img/decor/bg.jpg');
 }
