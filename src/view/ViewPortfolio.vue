@@ -1,6 +1,10 @@
 <template>
     <div class="background"></div>
-    <div class="light-mode"></div>
+    <div class="light-mode">
+        <audio>
+            <source src="@/assets/sounds/light-mode-on.mp3" type="audio/mp3" />
+        </audio>
+    </div>
     <div class="wrapper">
         <div class="cover cover--left"></div>
         <div class="cover cover--right"></div>
