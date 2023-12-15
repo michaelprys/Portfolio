@@ -24,3 +24,7 @@ $dc-shadow-inner: 0 0 0.6rem rgba(0, 0, 0, 0.2);
 // Blur
 $dc-blur-hard: blur(20px);
 $dc-blur-light: blur(6px);
+
+// Cursor
+$dc-pointer: url('@img/decor/cursor/cursor-pointer.png') 2 2, auto;
+$dc-arrow: url('@img/decor/cursor/cursor-arrow.png') 2 2, auto;

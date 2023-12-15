@@ -1,25 +1,28 @@
 <template>
+    <!-- <video class="background-video" autoplay loop muted plays-inline>
+        <source src="@img/decor/bg.mp4" type="video/mp4" />
+    </video> -->
     <div class="background"></div>
-    <div class="light-mode">
-        <audio>
+    <!-- <div class="light-mode"> -->
+    <!-- <audio>
             <source src="@/assets/sounds/light-mode-on.mp3" type="audio/mp3" />
-        </audio>
-    </div>
+        </audio> -->
+    <!-- </div> -->
     <div class="wrapper">
         <div class="cover cover--left"></div>
         <div class="cover cover--right"></div>
         <div class="book">
             <div class="book__page book__page--left">
                 <div class="book__content book__content--left">
-                    <svg
+                    <!-- <svg
                         class="book__prev-icon"
                         xmlns="http://www.w3.org/2000/svg"
-                        width="3rem"
-                        height="3rem"
+                        width="2.5rem"
+                        height="2.5rem"
                         viewBox="0 0 24 24">
                         <path
                             d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
-                    </svg>
+                    </svg> -->
                     <div class="book__content-shadow">
                         <div class="profile">
                             <div class="profile__avatar"></div>
@@ -86,33 +89,97 @@
                                 opinion, just like music, creating a design and
                                 'bringing it to life' is also part of the art.
                             </div>
-                            <button class="profile__button">Resume</button>
+                            <a
+                                class="profile__resume-link"
+                                href="https://drive.google.com/file/d/1Nt2rLL4LPawWGpPRnwPzKaQ8BDLQM4iA/view?usp=drive_link"
+                                target="_blank"
+                                >Resume</a
+                            >
                         </div>
+                        <!-- ./profile -->
                     </div>
                 </div>
             </div>
             <div class="book__page book__page--right">
-                <div class="book__content book__content--right">
-                    <svg
-                        class="book__next-icon"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="3rem"
-                        height="3rem"
-                        viewBox="0 0 24 24">
-                        <path
-                            d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
-                    </svg>
-                    <div class="book__content-shadow"></div>
+                <div class="book__page-front">
+                    <div class="book__content book__content--right">
+                        <div class="book__content-shadow">
+                            <div class="experience">
+                                <h1 class="title">Experience</h1>
+                                <span class="year">2017-present</span>
+                                <h2 class="subtitle">
+                                    Music Producer (Self-Employed) - YouTube
+                                </h2>
+                                <div class="experience__description">
+                                    Mediation of trade and services Production,
+                                    reproduction, distribution, sale, rental of
+                                    audio and audio-visual recordings and
+                                    production of unrecorded data carriers and
+                                    recordings.
+                                </div>
+                            </div>
+                            <!-- ./experience -->
+                            <div class="education">
+                                <h1 class="title">Education</h1>
+                                <span class="year">2015-2019</span>
+                                <div class="subtitle">
+                                    Odessa Mechnikov National University
+                                </div>
+                                <ul class="education__info">
+                                    <li>Academic Degree: Bachelor</li>
+                                    <li>Faculty: Information Technology</li>
+                                    <li>
+                                        Specialization: Computer Engineering
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- ./education -->
+                            <div class="communication">
+                                <h1 class="title">Communication</h1>
+                                <div class="subtitle">Languages</div>
+                                <ul class="communication__info">
+                                    <li>English (Advanced)</li>
+                                    <li>Spanish (Upper Intermediate)</li>
+                                    <li>Czech (Upper Intermediate)</li>
+                                    <li>Ukrainian (Native)</li>
+                                    <li>Russian (Native)</li>
+                                </ul>
+                            </div>
+                            <!-- ./communication -->
+                        </div>
+                        <svg
+                            class="book__next-icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="2.5rem"
+                            height="2.5rem"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
+                        </svg>
+                        <span class="book__page-number">1</span>
+                    </div>
                 </div>
+                <!-- ./page front -->
+                <div class="book__page-back"></div>
+                <!-- ./page back -->
             </div>
         </div>
     </div>
 </template>
 
+<script setup>
+import { onMounted } from 'vue';
+
+onMounted(() => {
+    document.cookie = 'locale=EN';
+});
+</script>
+
 <style lang="scss">
+// bg
 .background {
     @include bg;
-    background-image: url('@img/decor/bg.jpg');
+    background-image: url('@img/decor/bg-mobile.jpg');
     position: absolute;
     top: 0;
     left: 0;
@@ -120,28 +187,39 @@
     min-height: 100vh;
     opacity: 80%;
 }
+// .background-video {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     min-height: 100vh;
+//     opacity: 0.5;
+//     width: 100%;
+//     object-fit: cover;
+//     transition: opacity 1s ease-in-out;
+// }
+// .light-mode {
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     flex-shrink: 0;
+//     background-image: url('@img/decor/light-mode-inactive.png');
+//     position: absolute;
+//     top: -1px;
+//     right: 50px;
+//     z-index: 5;
+//     width: 32px;
+//     height: 115.5px;
+//     filter: drop-shadow(5px 5px 5px #222);
+//     transition: $tr-smooth;
+//     cursor: pointer;
+//     &:hover {
+//         filter: drop-shadow(10px 10px 10px #222);
+//         animation: $an-hanging;
+//         background-image: url('@img/decor/light-mode-active.png');
+//     }
+// }
 
-.light-mode {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    flex-shrink: 0;
-    background-image: url('@img/decor/light-mode-inactive.png');
-    position: absolute;
-    top: -1px;
-    right: 50px;
-    z-index: 5;
-    width: 32px;
-    height: 115.5px;
-    filter: drop-shadow(5px 5px 5px #222);
-    transition: $tr-smooth;
-    cursor: pointer;
-    &:hover {
-        filter: drop-shadow(10px 10px 10px #222);
-        animation: $an-hanging;
-        background-image: url('@img/decor/light-mode-active.png');
-    }
-}
+// wrapper
 .wrapper {
     position: relative;
     border-radius: $br-8;
@@ -149,6 +227,7 @@
     width: 75rem;
     min-height: 50rem;
 }
+// cover
 .cover {
     position: absolute;
     background-color: $c-cover;
@@ -168,13 +247,17 @@
         border-bottom-right-radius: $br-8;
     }
 }
+// book
 .book {
+    &__page-front,
+    &__page-back {
+        height: 100%;
+    }
     &__page {
         box-shadow: $dc-shadow-card;
         position: absolute;
         width: 50%;
         height: 100%;
-
         &--left {
             left: 0;
             padding-left: $p-10;
@@ -190,7 +273,7 @@
     }
     &__content {
         position: relative;
-        background-color: $c-page;
+        background-color: $c-warm;
         box-shadow: inset 0 0 30px 10px rgba(0, 0, 0, 0.2);
         height: 100%;
 
@@ -202,23 +285,24 @@
         }
         &--left {
             @include bg;
-            background-image: url('@img/decor/content/content-left.jpg');
+            // background-image: url('@img/decor/content/content-left.jpg');
         }
         &--right {
             @include bg;
-            background-image: url('@img/decor/content/content-right.jpg');
+            // background-image: url('@img/decor/content/content-right.jpg');
         }
     }
     &__prev-icon,
     &__next-icon {
         position: absolute;
-        fill: $c-text;
-        cursor: pointer;
+        fill: lighten($c-text, 10%);
         transition: $tr-smooth;
         border-radius: $br-circle;
+        // cursor: $dc-pointer;
+        cursor: pointer;
         &:hover {
             fill: $c-cover;
-            box-shadow: $dc-shadow-inner;
+            // box-shadow: $dc-shadow-inner;
         }
         bottom: 18px;
     }
@@ -228,7 +312,37 @@
     &__next-icon {
         right: 18px;
     }
+    &__page-number {
+        position: absolute;
+        bottom: 20px;
+        transform: translateX(-50%);
+        left: 50%;
+        color: lighten($c-text, 10%);
+        font-size: $fs-h4;
+        font-family: $ff-primary;
+    }
 }
+
+// common
+.title {
+    font-size: $fs-h3;
+    text-align: center;
+    font-family: $ff-primary-italic;
+    line-height: 1;
+}
+.subtitle {
+    font-family: $ff-primary-italic;
+    margin-block: $m-2;
+}
+
+.year {
+    display: block;
+    font-family: $ff-primary-italic;
+    font-size: $fs-base;
+    margin-top: $m-2;
+}
+
+// profile
 .profile {
     display: flex;
     flex-direction: column;
@@ -237,34 +351,28 @@
     &__avatar {
         position: relative;
         @include bg;
-        background-image: url('@img/decor/profile/avatar.jpg');
+        // background-image: url('@img/decor/profile/avatar.jpg');
+        background-image: url('https://placehold.co/200x200');
         margin-inline: auto;
         width: 200px;
         height: 200px;
-        // border-radius: $br-circle;
         border-radius: $br-6;
+        // border-radius: $br-circle;
+        filter: grayscale(80%);
         border: $bw-4 solid $c-cover;
         z-index: 1;
     }
-    // &__name {
-    //     margin-top: $m-6;
-    //     margin-bottom: $m-4;
-    //     color: $c-text;
-    //     font-size: $fs-h3;
-    //     font-family: '1820 Modern W00 Italic';
-    // }
     &__name {
         margin-top: $m-3_5;
-        color: $c-text;
         font-size: 2.75rem;
-        font-family: 'Italianno';
+        font-family: $ff-secondary;
     }
     &__specialization {
         position: relative;
         color: $c-text;
         font-size: $fs-base;
         margin-inline: auto;
-        font-family: 'Italianno';
+        font-family: $ff-secondary;
         font-size: 1.75rem;
         margin-top: $m-2;
         &::before {
@@ -292,33 +400,57 @@
         border-radius: $br-circle;
         outline: 2px solid transparent;
         padding: 5px;
+        // cursor: $dc-pointer;
         &:hover {
             fill: $c-cover;
-            outline-color: rgba($c-cover, 55%);
+            // outline-color: rgba($c-cover, 55%);
         }
     }
     &__about {
-        color: $c-text;
         text-align: justify;
         margin-top: $m-5;
-        font-family: '1820 Modern W00 Italic';
+        font-family: $ff-primary-italic;
         font-size: $fs-base;
     }
-    &__button {
-        margin-top: $m-7;
+    &__resume-link {
+        margin-top: $m-12;
         margin-inline: auto;
-        min-width: $w-28;
-        padding: 15px;
+        min-width: $w-24;
+        padding-block: $p-5;
         border-radius: $br-6;
         background-color: $c-cover;
-        color: $c-white;
+        color: $c-warm;
         font-size: $fs-medium;
+        line-height: 0;
         transition: $tr-smooth;
         border: 2px solid transparent;
+        font-family: $ff-primary;
+        font-size: $fs-small;
+        // cursor: $dc-pointer;
         &:hover {
-            background-color: $c-hover;
+            background-color: $c-warm;
             border-color: rgba($c-cover, 55%);
             color: $c-text;
+        }
+    }
+}
+
+// experience
+.experience {
+    &__description {
+        margin-top: $m-2_5;
+    }
+}
+
+// education
+.education,
+.communication {
+    margin-top: $m-6;
+    &__info {
+        margin-top: $m-2_5;
+        padding-left: $p-5;
+        & li {
+            list-style: disc;
         }
     }
 }
