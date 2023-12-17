@@ -2,7 +2,7 @@ import ViewPorfolio from '@/view/ViewPortfolio.vue';
 
 export const routes = [
     {
-        path: '/',
+        path: '/:page?',
         name: 'home',
         component: ViewPorfolio,
     },
