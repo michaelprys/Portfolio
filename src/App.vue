@@ -1,7 +1,9 @@
 <template>
-    <main></main>
-    <RouterView />
+    <main><ViewPortfolio /></main>
 </template>
-<script setup></script>
+
+<script setup>
+import ViewPortfolio from '@/view/ViewPortfolio.vue';
+</script>
 
 <style lang="scss"></style>

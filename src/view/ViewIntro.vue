@@ -78,7 +78,7 @@
                     </div>
                     <a
                         class="profile__resume-link"
-                        href="https://drive.google.com/file/d/1y3IG3NxHsR1CIF8XlOGjnaIAIsfqgoKk/view?usp=drive_link"
+                        href="https://drive.google.com/file/d/1F7AlNa7Uol8v_DNeV30reOGzze08o44o/view?usp=sharing"
                         target="_blank"
                         >Resume</a
                     >
@@ -97,8 +97,8 @@
     &__avatar {
         position: relative;
         @include bg;
-        // background-image: url('@img/decor/profile/avatar.jpg');
-        background-image: url('https://placehold.co/200x200');
+        background-image: url('@img/decor/profile/avatar.jpg');
+        // background-image: url('https://placehold.co/200x200');
         margin-inline: auto;
         width: 200px;
         height: 200px;
@@ -106,7 +106,6 @@
         // border-radius: $br-circle;
         filter: grayscale(80%);
         border: $bw-4 solid $c-cover;
-        z-index: 1;
     }
     &__name {
         margin-top: $m-3_5;
