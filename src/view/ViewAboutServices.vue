@@ -38,7 +38,6 @@
                     <ul class="communication__info">
                         <li>English (Advanced)</li>
                         <li>Spanish (Upper-Intermediate)</li>
-                        <li>Chinese (Pre-Intermediate)</li>
                         <li>Czech (Intermediate)</li>
                         <li>Ukrainian (Native)</li>
                         <li>Russian (Native)</li>

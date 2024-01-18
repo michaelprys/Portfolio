@@ -156,25 +156,12 @@
         font-size: $fs-base;
     }
     &__resume-link {
+        @include btn;
         margin-top: $m-12;
         margin-inline: auto;
         min-width: $w-24;
         padding-block: $p-5;
-        border-radius: $br-6;
-        background-color: $c-cover;
-        color: $c-warm;
-        font-size: $fs-medium;
         line-height: 0;
-        transition: $tr-smooth;
-        border: 2px solid transparent;
-        font-family: $ff-primary;
-        font-size: $fs-small;
-        // cursor: $dc-pointer;
-        &:hover {
-            background-color: $c-warm;
-            border-color: rgba($c-cover, 55%);
-            color: $c-text;
-        }
     }
 }
 </style>

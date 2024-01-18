@@ -21,7 +21,7 @@
                 class="book__page book__page--right"
                 :class="{ turn: pageStates.page3 }"
                 :style="calcZIndex('page3')">
-                <ViewSomeContact :togglePageState="togglePageState" />
+                <ViewProjectFuturePlans :togglePageState="togglePageState" />
             </div>
             <div
                 class="book__page book__page--right"
@@ -43,7 +43,7 @@
 import ViewIntro from '@/view/ViewIntro.vue';
 import ViewAboutServices from '@/view/ViewAboutServices.vue';
 import ViewSkillsProject from '@/view/ViewSkillsProject.vue';
-import ViewSomeContact from '@/view/ViewSomeContact.vue';
+import ViewProjectFuturePlans from '@/view/ViewProjectFuturePlans.vue';
 import { ref, provide } from 'vue';
 
 const pageStates = ref({
