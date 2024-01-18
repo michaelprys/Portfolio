@@ -28,10 +28,13 @@ const playSfx = () => {
 };
 
 const calcZIndex = inject('calcZIndex');
+const zIndexRef = inject('zIndexRef');
 
-const handleButtonClick = () => {
-    // playSfx();
-    calcZIndex();
+const handleButtonClick = page => {
+    setTimeout(() => {
+        const updatedZIndex = calcZIndex(page);
+        zIndexRef.value[page] = updatedZIndex.zIndex;
+    }, 500);
 };
 </script>
 

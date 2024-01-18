@@ -38,6 +38,7 @@
                     <ul class="communication__info">
                         <li>English (Advanced)</li>
                         <li>Spanish (Upper-Intermediate)</li>
+                        <li>Chinese (Pre-Intermediate)</li>
                         <li>Czech (Intermediate)</li>
                         <li>Ukrainian (Native)</li>
                         <li>Russian (Native)</li>
@@ -185,10 +186,8 @@ const props = defineProps(['togglePageState']);
     gap: $g-7;
     &__item {
         z-index: 4;
-        // border: $bw-2 solid lighten($c-text, 20%);
         border-radius: $br-8;
         padding: $p-4;
-        // background-color: rgba($c-text, 10%);
         box-shadow: $dc-shadow-inner;
         transition: $tr-smooth;
         &:hover {

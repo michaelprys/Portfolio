@@ -2,7 +2,7 @@
     <!-- <video class="background-video" autoplay loop muted plays-inline>
         <source src="@img/decor/bg.mp4" type="video/mp4" />
     </video> -->
-    <!-- <div class="background"></div> -->
+    <div class="background"></div>
     <div class="book-wrapper">
         <div class="book-cover book-cover--left"></div>
         <div class="book-cover book-cover--right"></div>
@@ -51,14 +51,16 @@ const pageStates = ref({
     page2: false,
     page1: false,
 });
+const zIndexRef = ref({
+    page1: 0,
+    page2: 0,
+    page3: 0,
+});
 
 const calcZIndex = page => {
     const index = Object.keys(pageStates.value).findIndex(p => p === page);
-    if (pageStates.value === true) {
-        return { zIndex: 20 - index };
-    } else {
-        return { zIndex: 20 + index };
-    }
+    const zIndex = pageStates.value[page] ? 20 - index : 20 + index;
+    return { zIndex };
 };
 
 console.log(calcZIndex);
@@ -68,6 +70,7 @@ const togglePageState = page => {
 };
 
 provide('calcZIndex', calcZIndex);
+provide('zIndexRef', zIndexRef);
 </script>
 
 <style lang="scss">
