@@ -11,7 +11,7 @@
                     >
                     <h2 class="subtitle">Music Producer – YouTube</h2>
                     <div class="experience__description">
-                        Mediation of trade and services Production,
+                        Mediation of trade and services. Production,
                         reproduction, distribution, sale, rental of audio and
                         audio-visual recordings and production of unrecorded
                         data carriers and recordings.

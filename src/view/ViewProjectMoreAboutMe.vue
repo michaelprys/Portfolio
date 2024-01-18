@@ -7,11 +7,25 @@
                 <div class="project project--nuka-cola">
                     <h2 class="title title--nuka-cola">Featured Project #2</h2>
                     <a class="project__link" href="#" target="_blank">
-                        <img
-                            class="project__img"
-                            src="@img/content/nuka-cola.jpg"
-                            alt="Nuka-Cola app"
-                    /></a>
+                        <div class="project__demo-wrapper">
+                            <video
+                                class="project__video"
+                                loop
+                                muted
+                                plays-inline
+                                ref="video">
+                                <source
+                                    src="@img/content/nuka-cola-demo.mp4"
+                                    type="video/mp4" />
+                            </video>
+                            <img
+                                @mouseover="playVideo"
+                                @mouseleave="pauseVideo"
+                                class="project__img"
+                                src="@img/content/nuka-cola.jpg"
+                                alt="Nuka-Cola app" />
+                        </div>
+                    </a>
                     <div class="project__general-wrapper">
                         <div class="project__info">
                             <div class="project__wrapper">
@@ -24,8 +38,8 @@
                                 /></a>
                             </div>
                             <span class="project__tech"
-                                ><span>Tech used:</span> Vanilla Js,
-                                Tailwindcss, HTML, Vite
+                                ><span>Tech used:</span> Vanilla JavaScript,
+                                Tailwind CSS, HTML, Node.js/Express, Vite
                             </span>
                             <h3 class="project__description-heading">
                                 Description:
@@ -82,7 +96,7 @@
                             Former wushu Changquan martial artist.
                         </li>
                         <li class="about__fact">
-                            I making different genres of music such as RnB and
+                            I make different genres of music such as RnB and
                             Ambient. Also, I make samples using midi-keyboards
                             and drumpads.
                         </li>
@@ -90,11 +104,11 @@
                             Learning languages is my passion.
                         </li>
                         <li class="about__fact">
-                            Sometimes I play strategy and MMO/RPG games.
+                            Sometimes I play strategy games.
                         </li>
                         <li class="about__fact">I like asian food.</li>
                     </ul>
-                    <h2 class="about__subtitle">Future Plans</h2>
+                    <h2 class="about__subtitle">Future plans</h2>
                     <p class="about__text">
                         I plan to learn more technologies, one of which I'm
                         focused right now is Quasar. Unlike Vuetify, Bootstrap,
@@ -122,6 +136,10 @@ import ItemTurnBtn from '@/component/ItemTurnBtn.vue';
 import SvgBtnNext from '@/component/svg/SvgBtnNext.vue';
 import SvgBtnPrev from '@/component/svg/SvgBtnPrev.vue';
 import SvgBtnDemo from '@/component/svg/SvgBtnDemo.vue';
+import { ref } from 'vue';
+import { usePlayVideo } from '@/use/usePlayVideo';
+
+const { video, playVideo, pauseVideo } = usePlayVideo();
 
 const props = defineProps(['togglePageState']);
 </script>

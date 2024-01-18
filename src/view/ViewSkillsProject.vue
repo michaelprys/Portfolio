@@ -236,11 +236,25 @@
                 <h1 class="title">Featured Project #1</h1>
                 <div class="project">
                     <a class="project__link" href="#" target="_blank">
-                        <img
-                            class="project__img"
-                            src="@img/content/herbalist.jpg"
-                            alt="Herbalist app"
-                    /></a>
+                        <div class="project__demo-wrapper">
+                            <video
+                                class="project__video"
+                                loop
+                                muted
+                                plays-inline
+                                ref="video">
+                                <source
+                                    src="@img/content/herbalist-demo.mp4"
+                                    type="video/mp4" />
+                            </video>
+                            <img
+                                @mouseover="playVideo"
+                                @mouseleave="pauseVideo"
+                                class="project__img"
+                                src="@img/content/herbalist.jpg"
+                                alt="Herbalist app" />
+                        </div>
+                    </a>
                     <div class="project__general-wrapper">
                         <div class="project__info">
                             <div class="project__wrapper">
@@ -293,6 +307,10 @@ import ItemTurnBtn from '@/component/ItemTurnBtn.vue';
 import SvgBtnNext from '@/component/svg/SvgBtnNext.vue';
 import SvgBtnPrev from '@/component/svg/SvgBtnPrev.vue';
 import SvgBtnDemo from '@/component/svg/SvgBtnDemo.vue';
+import { ref } from 'vue';
+import { usePlayVideo } from '@/use/usePlayVideo';
+
+const { video, playVideo, pauseVideo } = usePlayVideo();
 
 const props = defineProps(['togglePageState']);
 </script>
@@ -336,7 +354,7 @@ const props = defineProps(['togglePageState']);
 }
 .project {
     &__general-wrapper {
-        min-height: 21.7rem;
+        min-height: 21.9rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -350,18 +368,39 @@ const props = defineProps(['togglePageState']);
         width: $w-64;
         margin-inline: auto;
     }
-    &__img {
+    &__video {
         margin-top: $m-6;
         border-radius: $br-4;
         width: $w-64;
         margin-inline: auto;
-        filter: grayscale(60%);
         border: 0.5rem solid rgba($c-text, 10%);
         transition: $tr-smooth;
         box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.3);
         &:hover {
             box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
         }
+    }
+    &__img {
+        position: absolute;
+        width: 16.0006rem;
+        height: 12.4838rem;
+        filter: grayscale(60%);
+        border: 0.5rem solid rgba($c-text, 0%);
+        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+        top: 50%;
+        left: 50%;
+        transform: translateY(-50%) translateX(-50%);
+        transition: opacity $tr-smooth;
+        &:hover {
+            opacity: 0;
+        }
+    }
+    &__demo-wrapper {
+        width: $w-64;
+        position: relative;
+    }
+    &__video {
+        filter: grayscale(40%);
     }
     &__name {
         font-size: $fs-h4;
