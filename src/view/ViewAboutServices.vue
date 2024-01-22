@@ -43,7 +43,7 @@
                         <li>Russian (Native)</li>
                     </ul>
                 </div>
-                <ItemTurnBtn @click="togglePageState('page1')">
+                <ItemTurnBtn @click="turnPage">
                     <SvgBtnNext />
                 </ItemTurnBtn>
             </div>
@@ -54,7 +54,7 @@
     <div class="book__page-back">
         <div class="book__content book__content--right">
             <div class="book__content-inner">
-                <h1 class="title">What I Offer</h1>
+                <h1 class="title">What I offer</h1>
                 <ul class="services">
                     <li class="services__item">
                         <svg
@@ -85,8 +85,9 @@
                         </svg>
                         <span class="services__title">Responsive Design</span>
                         <p class="services__text">
-                            Craft a seamless user experience with responsive
-                            design that adapts flawlessly to various devices.
+                            Create a smooth user experience through responsive
+                            design that adjusts to different devices for optimal
+                            usability.
                         </p>
                     </li>
                     <li class="services__item">
@@ -103,9 +104,9 @@
                         </svg>
                         <span class="services__title"> API Integration </span>
                         <p class="services__text">
-                            Integrate external APIs with advanced Fetch requests
-                            for efficient data retrieval and optimal user
-                            experience.
+                            Integrate external APIs with advanced Fetch
+                            requests, ensuring efficient data retrieval and an
+                            improved user interaction.
                         </p>
                     </li>
                     <li class="services__item">
@@ -123,14 +124,14 @@
                         </svg>
                         <span class="services__title">SEO</span>
                         <p class="services__text">
-                            Optimize code, assets, and server responses for
-                            faster load times, ensuring an enhanced user
-                            experience.
+                            Optimize code, assets, and server responses to
+                            achieve faster load times, thereby significantly
+                            improving the search engine rankings.
                         </p>
                     </li>
                 </ul>
                 <span class="book__page-number">2</span>
-                <ItemTurnBtn @click="togglePageState('page1')">
+                <ItemTurnBtn @click="turnPage">
                     <SvgBtnPrev />
                 </ItemTurnBtn>
             </div>
@@ -144,7 +145,7 @@ import SvgCalendar from '@/component/svg/SvgCalendar.vue';
 import SvgBtnNext from '@/component/svg/SvgBtnNext.vue';
 import SvgBtnPrev from '@/component/svg/SvgBtnPrev.vue';
 
-const props = defineProps(['togglePageState']);
+const props = defineProps(['turnPage']);
 </script>
 
 <style lang="scss">

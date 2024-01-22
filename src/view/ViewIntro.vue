@@ -70,11 +70,11 @@
                     </ul>
                     <div class="profile__about">
                         Hello, my name is Mykhailo and I am a web developer and
-                        music producer. As a musician, I feel that music has
-                        become a direct source of inspiration for creating
-                        beautiful, user-friendly web interfaces, since, in my
-                        opinion, just like music, creating a design and
-                        'bringing it to life' is also part of the art.
+                        music producer. As a musician, I perceive music as a
+                        primary wellspring of inspiration for creating visually
+                        appealing and user-friendly web interfaces. In my view,
+                        akin to music, the art lies in designing and bringing
+                        that vision to life.
                     </div>
                     <a
                         class="profile__resume-link"
@@ -97,8 +97,10 @@
     &__avatar {
         position: relative;
         @include bg;
+        @supports (background-image: url('@img/decor/profile/avatar.webp')) {
+            background-image: url('@img/decor/profile/avatar.webp');
+        }
         background-image: url('@img/decor/profile/avatar.jpg');
-        // background-image: url('https://placehold.co/200x200');
         margin-inline: auto;
         width: 200px;
         height: 200px;

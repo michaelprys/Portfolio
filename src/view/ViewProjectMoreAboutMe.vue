@@ -5,7 +5,7 @@
             <div class="book__content-inner">
                 <!-- <h1 class="title">Future Plans</h1> -->
                 <div class="project project--nuka-cola">
-                    <h2 class="title title--nuka-cola">Featured Project #2</h2>
+                    <h2 class="title title--nuka-cola">Featured project #2</h2>
                     <a class="project__link" href="#" target="_blank">
                         <div class="project__demo-wrapper">
                             <video
@@ -18,12 +18,20 @@
                                     src="@img/content/nuka-cola-demo.mp4"
                                     type="video/mp4" />
                             </video>
-                            <img
-                                @mouseover="playVideo"
-                                @mouseleave="pauseVideo"
-                                class="project__img"
-                                src="@img/content/nuka-cola.jpg"
-                                alt="Nuka-Cola app" />
+                            <picture>
+                                <source
+                                    srcset="@img/content/nuka-cola.avif"
+                                    type="image/avif" />
+                                <source
+                                    srcset="@img/content/nuka-cola.webp"
+                                    type="image/webp" />
+                                <img
+                                    @mouseover="playVideo"
+                                    @mouseleave="pauseVideo"
+                                    class="project__img"
+                                    src="@img/content/nuka-cola.jpg"
+                                    alt="Nuka-Cola app" />
+                            </picture>
                         </div>
                     </a>
                     <div class="project__general-wrapper">
@@ -71,7 +79,7 @@
                     </div>
                 </div>
                 <span class="book__page-number">5</span>
-                <ItemTurnBtn @click="togglePageState('page3')">
+                <ItemTurnBtn @click="turnPage">
                     <SvgBtnNext />
                 </ItemTurnBtn>
             </div>
@@ -81,7 +89,7 @@
     <div class="book__page-back">
         <div class="book__content book__content--right">
             <div class="book__content-inner">
-                <h1 class="title">More About Me</h1>
+                <h1 class="title">More about me</h1>
                 <div class="about">
                     <p class="about__text">
                         I have 2+ years experience building web applications
@@ -123,7 +131,7 @@
                 </div>
 
                 <span class="book__page-number">6</span>
-                <ItemTurnBtn @click="togglePageState('page3')">
+                <ItemTurnBtn @click="turnPage">
                     <SvgBtnPrev />
                 </ItemTurnBtn>
             </div>
@@ -136,12 +144,11 @@ import ItemTurnBtn from '@/component/ItemTurnBtn.vue';
 import SvgBtnNext from '@/component/svg/SvgBtnNext.vue';
 import SvgBtnPrev from '@/component/svg/SvgBtnPrev.vue';
 import SvgBtnDemo from '@/component/svg/SvgBtnDemo.vue';
-import { ref } from 'vue';
 import { usePlayVideo } from '@/use/usePlayVideo';
 
 const { video, playVideo, pauseVideo } = usePlayVideo();
 
-const props = defineProps(['togglePageState']);
+const props = defineProps(['turnPage']);
 </script>
 
 <style lang="scss">

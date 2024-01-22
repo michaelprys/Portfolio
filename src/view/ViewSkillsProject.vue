@@ -223,7 +223,7 @@
                     </li>
                 </ul>
                 <span class="book__page-number">3</span>
-                <ItemTurnBtn @click="togglePageState('page2')">
+                <ItemTurnBtn @click="turnPage">
                     <SvgBtnNext />
                 </ItemTurnBtn>
             </div>
@@ -233,7 +233,7 @@
     <div class="book__page-back">
         <div class="book__content book__content--right">
             <div class="book__content-inner">
-                <h1 class="title">Featured Project #1</h1>
+                <h1 class="title">Featured project #1</h1>
                 <div class="project">
                     <a class="project__link" href="#" target="_blank">
                         <div class="project__demo-wrapper">
@@ -247,12 +247,20 @@
                                     src="@img/content/herbalist-demo.mp4"
                                     type="video/mp4" />
                             </video>
-                            <img
-                                @mouseover="playVideo"
-                                @mouseleave="pauseVideo"
-                                class="project__img"
-                                src="@img/content/herbalist.jpg"
-                                alt="Herbalist app" />
+                            <picture>
+                                <source
+                                    srcset="@img/content/herbalist.avif"
+                                    type="image/avif" />
+                                <source
+                                    srcset="@img/content/herbalist.webp"
+                                    type="image/webp" />
+                                <img
+                                    @mouseover="playVideo"
+                                    @mouseleave="pauseVideo"
+                                    class="project__img"
+                                    src="@img/content/herbalist.jpg"
+                                    alt="Herbalist app" />
+                            </picture>
                         </div>
                     </a>
                     <div class="project__general-wrapper">
@@ -294,7 +302,7 @@
                 </div>
 
                 <span class="book__page-number">4</span>
-                <ItemTurnBtn @click="togglePageState('page2')">
+                <ItemTurnBtn @click="turnPage">
                     <SvgBtnPrev />
                 </ItemTurnBtn>
             </div>
@@ -307,12 +315,11 @@ import ItemTurnBtn from '@/component/ItemTurnBtn.vue';
 import SvgBtnNext from '@/component/svg/SvgBtnNext.vue';
 import SvgBtnPrev from '@/component/svg/SvgBtnPrev.vue';
 import SvgBtnDemo from '@/component/svg/SvgBtnDemo.vue';
-import { ref } from 'vue';
 import { usePlayVideo } from '@/use/usePlayVideo';
 
 const { video, playVideo, pauseVideo } = usePlayVideo();
 
-const props = defineProps(['togglePageState']);
+const props = defineProps(['turnPage']);
 </script>
 
 <style lang="scss">
