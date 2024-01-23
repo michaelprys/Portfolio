@@ -85,6 +85,15 @@
             </div>
         </div>
     </div>
+    <!-- page 8 (back - blank page) -->
+    <div class="book__page-back">
+        <div class="book__content book__content--right">
+            <div class="book__content-inner">
+                <h2 class="end-title">Thank you</h2>
+                <span class="book__page-number">8</span>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script setup>
@@ -184,17 +193,17 @@ const props = defineProps(['turnPage', 'turnAllPagesReversed']);
     }
 }
 
-// .book__content-inner {
-//     position: relative;
-// }
-// .end-title {
-//     position: absolute;
-//     top: 41%;
-//     left: 50%;
-//     transform: translateY(-50%);
-//     transform: translateX(-50%);
-//     color: $c-text;
-//     font-size: 4.2rem;
-//     font-family: $ff-secondary;
-// }
+.book__content-inner {
+    position: relative;
+}
+.end-title {
+    position: absolute;
+    top: 41%;
+    left: 50%;
+    transform: translateY(-50%);
+    transform: translateX(-50%);
+    color: $c-text;
+    font-size: 4.2rem;
+    font-family: $ff-secondary;
+}
 </style>
