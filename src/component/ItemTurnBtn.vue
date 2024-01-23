@@ -1,5 +1,5 @@
 <template>
-    <button class="book__nav-btn" @click="playSfx">
+    <button class="book__nav-btn" @click="handlePlaySfx">
         <slot> </slot>
     </button>
 </template>
@@ -10,21 +10,22 @@ import Sfx2 from '@/assets/sounds/page-turn-2.mp3?url';
 import Sfx3 from '@/assets/sounds/page-turn-3.mp3?url';
 import Sfx4 from '@/assets/sounds/page-turn-4.mp3?url';
 import Sfx5 from '@/assets/sounds/page-turn-5.mp3?url';
+import { usePlaySfx } from '@/use/usePlaySfx';
 
-// const sounds = [Sfx1, Sfx2, Sfx3, Sfx4, Sfx5];
-// let previousSound;
+const { playSfx } = usePlaySfx();
 
-// const getSound = () => {
-//     const filteredSounds = sounds.filter(sound => sound !== previousSound);
-//     return (previousSound =
-//         filteredSounds[Math.floor(Math.random() * filteredSounds.length)]);
-// };
+const sounds = [Sfx1, Sfx2, Sfx3, Sfx4, Sfx5];
+let previousSound;
 
-// const playSfx = () => {
-//     const sound = new Audio(getSound());
-//     sound.volume = 0.1;
-//     sound.play();
-// };
+const getSound = () => {
+    const filteredSounds = sounds.filter(sound => sound !== previousSound);
+    return (previousSound =
+        filteredSounds[Math.floor(Math.random() * filteredSounds.length)]);
+};
+
+const handlePlaySfx = () => {
+    playSfx(getSound());
+};
 </script>
 
 <style lang="scss"></style>

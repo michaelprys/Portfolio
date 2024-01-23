@@ -76,17 +76,38 @@
                         akin to music, the art lies in designing and bringing
                         that vision to life.
                     </div>
-                    <a
-                        class="profile__resume-link"
-                        href="https://drive.google.com/file/d/1F7AlNa7Uol8v_DNeV30reOGzze08o44o/view?usp=sharing"
-                        target="_blank"
-                        >Resume</a
-                    >
+                    <div class="profile__buttons">
+                        <a
+                            class="profile__link"
+                            href="https://drive.google.com/file/d/1F7AlNa7Uol8v_DNeV30reOGzze08o44o/view?usp=sharing"
+                            target="_blank"
+                            >Resume</a
+                        >
+                        <button
+                            type="button"
+                            class="profile__button"
+                            @click="[turnAllPages(), handlePlaySfx()]">
+                            Contact
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<script setup>
+import Sfx6 from '@/assets/sounds/page-shuffle.mp3?url';
+import { usePlaySfx } from '@/use/usePlaySfx';
+
+const { playSfx } = usePlaySfx();
+
+const handlePlaySfx = () => {
+    playSfx(Sfx6);
+};
+
+const props = defineProps(['turnAllPages']);
+</script>
 
 <style lang="scss">
 .profile {
@@ -157,11 +178,16 @@
         font-family: $ff-primary-italic;
         font-size: $fs-base;
     }
-    &__resume-link {
+    &__buttons {
+        display: flex;
+        padding-inline: 6.4em;
+    }
+    &__link,
+    &__button {
         @include btn;
         margin-top: $m-12;
         margin-inline: auto;
-        min-width: $w-24;
+        min-width: $w-28;
         padding-block: $p-5;
         line-height: 0;
     }

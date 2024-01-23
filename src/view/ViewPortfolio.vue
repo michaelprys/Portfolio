@@ -5,42 +5,43 @@
         <div class="book-cover book-cover--right"></div>
         <div class="book">
             <!-- overlay page -->
-            <!-- <div class="book__page book__page--left">
+            <div class="book__page book__page--left">
                 <div
                     class="book__content book__content--left overlay-left"></div>
             </div>
             <div class="book__page book__page--right">
                 <div
                     class="book__content book__content--right transparent overlay-right"></div>
-            </div> -->
+            </div>
             <!-- intro page -->
-            <ViewIntro />
+            <ViewIntro :turnAllPages="turnAllPages" />
             <!-- other pages -->
             <div
                 ref="page1Ref"
                 class="book__page book__page--right"
-                :class="{ turn: pageStates.page1 }">
+                :class="{
+                    turn: pageStates.page1,
+                }">
                 <ViewAboutServices :turnPage="() => turnPage('page1')" />
             </div>
             <div
                 ref="page2Ref"
                 class="book__page book__page--right"
-                :class="{ turn: pageStates.page2 }">
+                :class="{
+                    turn: pageStates.page2,
+                }">
                 <ViewSkillsProject :turnPage="() => turnPage('page2')" />
             </div>
             <div
                 ref="page3Ref"
                 class="book__page book__page--right"
-                :class="{ turn: pageStates.page3 }">
+                :class="{
+                    turn: pageStates.page3,
+                }">
                 <ViewProjectMoreAboutMe :turnPage="() => turnPage('page3')" />
             </div>
-            <div
-                ref="page4Ref"
-                class="book__page book__page--right"
-                :class="{
-                    turn: pageStates.page4,
-                }">
-                <ViewContactEnd :turnPage="() => turnPage('page4')" />
+            <div class="book__page book__page--right">
+                <ViewContactEnd :turnAllPagesReversed="turnAllPagesReversed" />
             </div>
         </div>
     </div>
@@ -58,31 +59,49 @@ const pageStates = ref({
     page1: false,
     page2: false,
     page3: false,
-    page4: false,
 });
 
 const page1Ref = ref(null);
 const page2Ref = ref(null);
 const page3Ref = ref(null);
-const page4Ref = ref(null);
 
-const pageRefs = [page1Ref, page2Ref, page3Ref, page4Ref];
+const pageRefs = [page1Ref, page2Ref, page3Ref];
 
 const zIndexCounter = ref({
     page1: 20,
     page2: 19,
     page3: 18,
-    page4: 17,
 });
+
+const pages = Object.keys(pageStates.value);
 
 const turnPage = page => {
     pageStates.value[page] = !pageStates.value[page];
-    updateZIndex(page);
+    setTimeout(() => {
+        updateZIndex(page);
+    }, 500);
 };
 
 const updateZIndex = page => {
     zIndexCounter.value[page] =
         Math.max(...Object.values(zIndexCounter.value)) + 1;
+};
+
+const turnAllPages = () => {
+    pages.forEach((page, index) => {
+        setTimeout(() => {
+            turnPage(page);
+        }, 100 + 200 * index);
+    });
+};
+
+const turnAllPagesReversed = () => {
+    const reversedPages = [...pages].reverse();
+    reversedPages.forEach((page, index) => {
+        setTimeout(() => {
+            turnPage(page);
+        }, 100 + 200 * index);
+    });
 };
 
 onMounted(() => {
@@ -143,16 +162,16 @@ onMounted(() => {
 }
 // book
 .book {
-    // & .overlay-left {
-    //     box-shadow: $dc-shadow-light;
-    // }
-    // & .overlay-right {
-    //     transition: 0.5s linear;
-    //     box-shadow: $dc-shadow-light;
-    // }
-    // & .remove-overlay {
-    //     box-shadow: none;
-    // }
+    & .overlay-left {
+        box-shadow: $dc-shadow-light;
+    }
+    & .overlay-right {
+        transition: 0.5s linear;
+        box-shadow: $dc-shadow-light;
+    }
+    & .remove-overlay {
+        box-shadow: none;
+    }
     // & .add-overlay {
     //     transition: 3s linear;
     //     box-shadow: none;
@@ -199,7 +218,9 @@ onMounted(() => {
             transform-style: preserve-3d;
             transform-origin: left;
             transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
-
+            &.fast-transition {
+                transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+            }
             &.turn {
                 transform: rotateY(180deg);
             }

@@ -288,7 +288,7 @@
                                 includes server-side pagination, a custom server
                                 and database, along with optimizations like
                                 skeleton loaders for an enhanced user
-                                experience. Besides, it's fully responsive and
+                                interaction. Besides, it's fully responsive and
                                 adaptive on all devices.
                             </p>
                         </div>

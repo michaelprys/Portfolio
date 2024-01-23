@@ -95,7 +95,7 @@
                         I have 2+ years experience building web applications
                         from scratch, strong grasp of modern HTML, CSS,
                         JavaScript, and accessibility best practices,
-                        familiarity with Git version control and pull request
+                        familiarity with GIT version control and pull request
                         workflows.
                     </p>
                     <h2 class="about__subtitle">Some facts</h2>
