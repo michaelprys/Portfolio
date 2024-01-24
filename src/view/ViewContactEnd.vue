@@ -1,6 +1,7 @@
 <template>
     <!-- page 7 (front) -->
     <div class="book__page-front">
+        <div class="book-overlay book-overlay--right"></div>
         <div class="book__content book__content--right">
             <div class="book__content-inner">
                 <h1 class="title">Contact me</h1>
@@ -72,7 +73,7 @@
                 </ItemTurnBtn> -->
                 <button
                     class="contact__to-first-page-btn"
-                    @click="[turnAllPagesReversed(), handlePlaySfx()]">
+                    @click="turnAllPagesReversed()">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="2.2rem"
@@ -97,15 +98,6 @@
 </template>
 
 <script setup>
-import Sfx6 from '@/assets/sounds/page-shuffle.mp3?url';
-import { usePlaySfx } from '@/use/usePlaySfx';
-
-const { playSfx } = usePlaySfx();
-
-const handlePlaySfx = () => {
-    playSfx(Sfx6);
-};
-
 const props = defineProps(['turnPage', 'turnAllPagesReversed']);
 </script>
 

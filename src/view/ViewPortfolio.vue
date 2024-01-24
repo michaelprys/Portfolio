@@ -14,17 +14,11 @@
             }"></div>
 
         <div class="book">
-            <!-- overlay page -->
-            <!-- <div class="book__page book__page--left">
-                <div
-                    class="book__content book__content--left overlay-left"></div>
-            </div>
-            <div class="book__page book__page--right">
-                <div
-                    class="book__content book__content--right overlay-right"></div>
-            </div> -->
             <!-- intro page -->
-            <ViewIntro :turnAllPages="turnAllPages" />
+            <div class="book__page book__page--left" ref="introRef">
+                <ViewIntro :turnAllPages="turnAllPages" />
+            </div>
+
             <!-- other pages -->
             <div
                 ref="page1Ref"
@@ -127,6 +121,7 @@ const turnAllPages = () => {
                 }
             }, 100 + 200 * index);
         });
+        playSfx(Sfx6);
     }
 };
 
@@ -144,6 +139,7 @@ const turnAllPagesReversed = () => {
                 }
             }, 100 + 200 * index);
         });
+        playSfx(Sfx6);
     }
 };
 
@@ -154,15 +150,13 @@ const openBook = () => {
             turnPage(page);
         }, 100 + 200 * index);
     });
-
-    playSfx(Sfx6);
 };
 
 setTimeout(() => {
     openBook();
-}, 2100);
+}, 1400);
 
-onMounted(() => {
+onMounted(async () => {
     watchEffect(() => {
         for (let i = 0; i < pageRefs.length; i++) {
             const pageIndex = i === 4 ? 'cover' : `page${i + 1}`;
@@ -185,9 +179,9 @@ onMounted(() => {
 }
 .background {
     @include bg;
-    // @supports (background-image: url('@img/decor/bg-mobile.webp')) {
-    //     background-image: url('@img/decor/bg-mobile.webp');
-    // }
+    @supports (background-image: url('@img/decor/bg-mobile.webp')) {
+        background-image: url('@img/decor/bg-mobile.webp');
+    }
     background-image: url('@img/decor/bg-mobile.jpg');
     position: absolute;
     top: 0;
@@ -268,6 +262,25 @@ onMounted(() => {
 }
 // book
 .book {
+    &-overlay--left,
+    &-overlay--right {
+        position: absolute;
+        top: 2.5em;
+        width: 560px;
+        height: 720px;
+    }
+    &-overlay--left {
+        @include bg;
+        background-image: url('@img/decor/content/content-left.jpg');
+        filter: drop-shadow(-11px 10px 11px rgba(0, 0, 0, 0.329));
+        left: calc(0% + 2.5em);
+    }
+    &-overlay--right {
+        @include bg;
+        background-image: url('@img/decor/content/content-right.jpg');
+        filter: drop-shadow(11px 10px 11px rgba(0, 0, 0, 0.329));
+        right: calc(0% + 2.5em);
+    }
     &__page-front,
     &__page-back {
         position: absolute;
@@ -321,7 +334,6 @@ onMounted(() => {
     &__content {
         position: relative;
         background-color: $c-warm;
-
         height: 100%;
 
         &-inner {
@@ -337,9 +349,6 @@ onMounted(() => {
                 background-image: url('@img/decor/content/content-left.webp');
             }
             background-image: url('@img/decor/content/content-left.jpg');
-            &.overlay-left {
-                box-shadow: $dc-shadow-light;
-            }
         }
         &--right {
             @include bg;
@@ -349,13 +358,6 @@ onMounted(() => {
                 background-image: url('@img/decor/content/content-right.webp');
             }
             background-image: url('@img/decor/content/content-right.jpg');
-            &.transparent {
-                background-color: transparent;
-                background-image: none;
-            }
-            &.overlay-right {
-                box-shadow: $dc-shadow-light;
-            }
         }
     }
     &__nav-btn {
