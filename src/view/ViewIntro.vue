@@ -1,12 +1,12 @@
 <template>
-    <div class="book-overlay book-overlay--left"></div>
+    <div class="book__overlay book__overlay--left"></div>
     <div class="book__content book__content--left">
         <div class="book__content-inner">
             <div class="profile">
                 <div class="profile__avatar"></div>
                 <div class="profile__name">Mykhailo Prysiazhnyi</div>
                 <div class="profile__specialization">
-                    a creative freelancer & web developer
+                    a creative freelancer & frontend developer
                 </div>
                 <ul class="profile__social">
                     <li>
@@ -69,16 +69,15 @@
                     </li>
                 </ul>
                 <div class="profile__about">
-                    Hello, my name is Mykhailo and I am a web developer and
-                    music producer. As a musician, I perceive music as a primary
-                    wellspring of inspiration for creating visually appealing
-                    and user-friendly web interfaces. In my view, akin to music,
-                    the art lies in designing and bringing that vision to life.
+                    As a musician, I perceive music as a primary source of
+                    inspiration for creating visually appealing web interfaces.
+                    In my view, just like in music, the art lies in designing
+                    and bringing that vision to life.
                 </div>
                 <div class="profile__buttons">
                     <a
                         class="profile__link"
-                        href="https://drive.google.com/file/d/1F7AlNa7Uol8v_DNeV30reOGzze08o44o/view?usp=sharing"
+                        href="https://drive.google.com/file/d/1SWXAcrOGWDhlSZrrziJYW-RkB9bGqy0f/view?usp=sharing"
                         target="_blank"
                         >Resume</a
                     >
@@ -90,12 +89,20 @@
                     </button>
                 </div>
             </div>
+            <ItemTurnBtn v-if="windowWidth < 1280" @click="dropPage()">
+                <SvgBtnNext />
+            </ItemTurnBtn>
         </div>
     </div>
 </template>
 
 <script setup>
-const props = defineProps(['turnAllPages']);
+import ItemTurnBtn from '@/component/ItemTurnBtn.vue';
+import SvgBtnNext from '@/component/svg/SvgBtnNext.vue';
+import { useWindowSize } from '@vueuse/core';
+
+const { width: windowWidth } = useWindowSize();
+const props = defineProps(['dropPage', 'turnAllPages']);
 </script>
 
 <style lang="scss">
@@ -168,7 +175,7 @@ const props = defineProps(['turnAllPages']);
     }
     &__buttons {
         display: flex;
-        padding-inline: 6.4em;
+        padding-inline: 6.2em;
     }
     &__link,
     &__button {
@@ -178,6 +185,40 @@ const props = defineProps(['turnAllPages']);
         min-width: $w-28;
         padding-block: $p-5;
         line-height: 0;
+    }
+}
+
+@media (width <= $screen-xl) {
+    .profile {
+        &__buttons {
+            padding-inline: 5em;
+        }
+    }
+}
+@media (width <= $screen-sm) {
+    .profile {
+        &__avatar {
+            width: 11rem;
+            height: 11rem;
+        }
+        &__name {
+            font-size: $fs-h1;
+        }
+        &__specialization {
+            font-size: $fs-h4;
+        }
+        &__about {
+            font-size: $fs-small;
+            margin-top: $m-2_5;
+        }
+        &__buttons {
+            padding-inline: 2.6em;
+        }
+        &__link,
+        &__button {
+            min-width: $w-24;
+            line-height: 0;
+        }
     }
 }
 </style>

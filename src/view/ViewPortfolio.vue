@@ -2,8 +2,7 @@
     <video class="background-video" autoplay loop muted plays-inline>
         <source src="@img/decor/bg.mp4" type="video/mp4" />
     </video>
-    <!-- <div class="background"></div> -->
-    <div class="background-overlay"></div>
+    <ItemBgOverlay />
     <div class="book-wrapper">
         <div class="book-cover book-cover--left"></div>
         <div
@@ -14,55 +13,97 @@
             }"></div>
 
         <div class="book">
-            <!-- intro page -->
-            <div class="book__page book__page--left" ref="introRef">
+            <!-- Page 0 (intro) -->
+            <div class="book__page book__page--left">
                 <ViewIntro :turnAllPages="turnAllPages" />
             </div>
-
-            <!-- other pages -->
+            <!-- Page 1 (front & back) -->
             <div
-                ref="page1Ref"
                 class="book__page book__page--right"
-                :class="{
-                    turn: pageStates.page1,
-                }">
-                <ViewAboutServices :turnPage="() => turnPage('page1')" />
+                :class="[
+                    {
+                        turn: pageStates.page1,
+                    },
+                ]"
+                ref="page1Ref">
+                <div class="book__page-front">
+                    <ViewAbout />
+                </div>
+                <div class="book__page-back">
+                    <ViewServices />
+                </div>
             </div>
+            <!-- Page 2 (front & back) -->
             <div
-                ref="page2Ref"
                 class="book__page book__page--right"
-                :class="{
-                    turn: pageStates.page2,
-                }">
-                <ViewSkillsProject :turnPage="() => turnPage('page2')" />
+                :class="[
+                    {
+                        turn: pageStates.page2,
+                    },
+                ]"
+                ref="page2Ref">
+                <div class="book__page-front">
+                    <ViewSkills />
+                </div>
+                <div class="book__page-back">
+                    <ViewProjectOne />
+                </div>
             </div>
+            <!-- Page 3 (front & back) -->
             <div
-                ref="page3Ref"
                 class="book__page book__page--right"
-                :class="{
-                    turn: pageStates.page3,
-                }">
-                <ViewProjectMoreAboutMe :turnPage="() => turnPage('page3')" />
+                :class="[
+                    {
+                        turn: pageStates.page3,
+                    },
+                ]"
+                ref="page3Ref">
+                <div class="book__page-front">
+                    <ViewProjectTwo />
+                </div>
+                <div class="book__page-back">
+                    <ViewMoreAboutMe />
+                </div>
             </div>
+            <!-- Page 4 (front & back) -->
             <div
-                ref="page4Ref"
                 class="book__page book__page--right"
-                :class="{
-                    turn: pageStates.page4,
-                }">
-                <ViewContactEnd :turnAllPagesReversed="turnAllPagesReversed" />
+                :class="[
+                    {
+                        turn: pageStates.page4,
+                    },
+                ]"
+                ref="page4Ref">
+                <div class="book__page-front">
+                    <ViewContact
+                        :turnAllPagesReversed="() => turnAllPagesReversed()" />
+                </div>
+                <div class="book__page-back">
+                    <ViewEnd />
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
+// page 0 (intro)
 import ViewIntro from '@/view/ViewIntro.vue';
-import ViewAboutServices from '@/view/ViewAboutServices.vue';
-import ViewSkillsProject from '@/view/ViewSkillsProject.vue';
-import ViewProjectMoreAboutMe from '@/view/ViewProjectMoreAboutMe.vue';
-import ViewContactEnd from '@/view/ViewContactEnd.vue';
-import { ref, watchEffect, onMounted } from 'vue';
+// page 1 (front & back)
+import ViewAbout from '@/view/ViewAbout.vue';
+import ViewServices from '@/view/ViewServices.vue';
+// page 2 (front & back)
+import ViewSkills from '@/view/ViewSkills.vue';
+import ViewProjectOne from '@/view/ViewProjectOne.vue';
+// page 3 (front & back)
+import ViewProjectTwo from '@/view/ViewProjectTwo.vue';
+import ViewMoreAboutMe from '@/view/ViewMoreAboutMe.vue';
+// page 4 (front & back)
+import ViewContact from '@/view/ViewContact.vue';
+import ViewEnd from '@/view/ViewEnd.vue';
+// other imports
+import ItemBgOverlay from '@/component/ItemBgOverlay.vue';
+import { ref, watchEffect, onMounted, provide } from 'vue';
 import Sfx6 from '@/assets/sounds/page-shuffle.mp3?url';
 import { usePlaySfx } from '@/use/usePlaySfx';
 
@@ -143,6 +184,8 @@ const turnAllPagesReversed = () => {
     }
 };
 
+provide('turnPage', turnPage);
+
 const openBook = () => {
     const reversedPages = [...pages].reverse();
     reversedPages.forEach((page, index) => {
@@ -152,10 +195,6 @@ const openBook = () => {
     });
 };
 
-setTimeout(() => {
-    openBook();
-}, 1400);
-
 onMounted(async () => {
     watchEffect(() => {
         for (let i = 0; i < pageRefs.length; i++) {
@@ -163,42 +202,25 @@ onMounted(async () => {
             pageRefs[i].value.style.zIndex = zIndexCounter.value[pageIndex];
         }
     });
+    setTimeout(() => {
+        openBook();
+    }, 1400);
 });
 </script>
 
 <style lang="scss">
+.book__content-inner {
+    position: relative;
+}
 .background-video {
     position: absolute;
     top: 0;
     left: 0;
     min-height: 100vh;
-    opacity: 0.5;
     width: 100%;
     object-fit: cover;
     transition: opacity 1s ease-in-out;
-}
-.background {
-    @include bg;
-    @supports (background-image: url('@img/decor/bg-mobile.webp')) {
-        background-image: url('@img/decor/bg-mobile.webp');
-    }
-    background-image: url('@img/decor/bg-mobile.jpg');
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-height: 100vh;
-    opacity: 80%;
-}
-.background-overlay {
-    @include bg;
-    background-image: url('@img/decor/bg-overlay.jpg');
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-height: 100vh;
-    animation: show-bg 2s forwards;
+    opacity: 0.5;
 }
 // book-wrapper
 .book-wrapper {
@@ -262,20 +284,20 @@ onMounted(async () => {
 }
 // book
 .book {
-    &-overlay--left,
-    &-overlay--right {
+    &__overlay--left,
+    &__overlay--right {
         position: absolute;
         top: 2.5em;
         width: 560px;
         height: 720px;
     }
-    &-overlay--left {
+    &__overlay--left {
         @include bg;
         background-image: url('@img/decor/content/content-left.jpg');
         filter: drop-shadow(-11px 10px 11px rgba(0, 0, 0, 0.329));
         left: calc(0% + 2.5em);
     }
-    &-overlay--right {
+    &__overlay--right {
         @include bg;
         background-image: url('@img/decor/content/content-right.jpg');
         filter: drop-shadow(11px 10px 11px rgba(0, 0, 0, 0.329));

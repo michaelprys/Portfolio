@@ -12,6 +12,7 @@
         "convert": "node tool/imageConversion.js"
     },
     "dependencies": {
+        "@vueuse/core": "^10.9.0",
         "vue": "latest"
     },
     "devDependencies": {
