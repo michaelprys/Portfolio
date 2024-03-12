@@ -14,3 +14,8 @@ body {
     min-height: 100vh;
     overflow: hidden;
 }
+
+.container {
+    margin-inline: auto;
+    max-width: $container-xl;
+}

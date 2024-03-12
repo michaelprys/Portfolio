@@ -82,7 +82,7 @@
             </ItemTurnBtn>
 
             <ItemTurnBtn v-else @click="dropPage">
-                <SvgBtnNext />
+                <SvgBtnDrop />
             </ItemTurnBtn>
         </div>
     </div>
@@ -91,7 +91,7 @@
 <script setup>
 import ItemTurnBtn from '@/component/ItemTurnBtn.vue';
 import SvgBtnPrev from '@/component/svg/SvgBtnPrev.vue';
-import SvgBtnNext from '@/component/svg/SvgBtnNext.vue';
+import SvgBtnDrop from '@/component/svg/SvgBtnDrop.vue';
 import { inject } from 'vue';
 import { useWindowSize } from '@vueuse/core';
 
@@ -114,7 +114,7 @@ const handleTurnPage = page => {
     grid-template-rows: 1fr 1fr;
     gap: $g-7;
     &__item {
-        z-index: 4;
+        z-index: 0;
         border-radius: $br-8;
         padding: $p-4;
         box-shadow: $dc-shadow-inner;
@@ -136,6 +136,25 @@ const handleTurnPage = page => {
     &__icon {
         fill: $c-text;
         margin-inline: auto;
+    }
+}
+
+@media (width <= $screen-sm) {
+    .services {
+        margin-top: $m-6;
+        &__item {
+            padding: $p-3;
+        }
+        &__title {
+            font-size: 0.75rem;
+        }
+        &__text {
+            font-size: 12px;
+        }
+        &__icon {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
     }
 }
 </style>

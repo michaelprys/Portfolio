@@ -1,5 +1,7 @@
 <template>
-    <div class="book__overlay book__overlay--right"></div>
+    <div
+        class="book__overlay book__overlay--right"
+        v-if="windowWidth > 1280"></div>
     <div class="book__content book__content--right">
         <div class="book__content-inner">
             <h1 class="title">Contact me</h1>
@@ -81,7 +83,7 @@
             </button>
 
             <ItemTurnBtn v-else @click="dropPage">
-                <SvgBtnNext />
+                <SvgBtnDrop />
             </ItemTurnBtn>
         </div>
     </div>
@@ -89,7 +91,7 @@
 
 <script setup>
 import ItemTurnBtn from '@/component/ItemTurnBtn.vue';
-import SvgBtnNext from '@/component/svg/SvgBtnNext.vue';
+import SvgBtnDrop from '@/component/svg/SvgBtnDrop.vue';
 import { useWindowSize } from '@vueuse/core';
 
 const { width: windowWidth } = useWindowSize();
@@ -100,8 +102,7 @@ const props = defineProps(['dropPage', 'turnAllPagesReversed']);
 <style lang="scss">
 .contact {
     margin-top: $m-6;
-    width: 100%;
-    height: 100%;
+
     &__wrapper {
         display: flex;
         justify-content: space-between;
@@ -183,5 +184,55 @@ const props = defineProps(['dropPage', 'turnAllPagesReversed']);
 
 .book__content-inner {
     position: relative;
+}
+
+@media (width <= $screen-xl) {
+    .contact {
+        &__item {
+            & input {
+                width: 13.25rem;
+            }
+        }
+    }
+}
+
+@media (width <= $screen-sm) {
+    .contact {
+        margin-top: $m-6;
+        width: 100%;
+        height: 100%;
+        &__wrapper {
+            display: flex;
+            justify-content: space-between;
+        }
+        &__list {
+            display: flex;
+            flex-direction: column;
+            gap: $g-7;
+            text-align: center;
+        }
+        &__item {
+            & input,
+            & textarea {
+                font-size: $fs-smaller;
+                padding-block: 6px;
+            }
+            & input {
+                width: 10rem;
+            }
+            & textarea {
+                min-width: 100%;
+                max-width: 100%;
+                min-height: 13rem;
+                max-height: 13rem;
+            }
+        }
+        &__btn {
+            margin-inline: auto;
+            padding-inline: $p-4;
+            padding-block: $p-2;
+            font-size: 0.75rem;
+        }
+    }
 }
 </style>

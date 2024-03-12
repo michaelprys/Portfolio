@@ -48,7 +48,7 @@
             </ItemTurnBtn>
 
             <ItemTurnBtn v-else @click="dropPage">
-                <SvgBtnNext />
+                <SvgBtnDrop />
             </ItemTurnBtn>
         </div>
     </div>
@@ -58,6 +58,7 @@
 import ItemTurnBtn from '@/component/ItemTurnBtn.vue';
 import SvgCalendar from '@/component/svg/SvgCalendar.vue';
 import SvgBtnNext from '@/component/svg/SvgBtnNext.vue';
+import SvgBtnDrop from '@/component/svg/SvgBtnDrop.vue';
 import { inject } from 'vue';
 import { useWindowSize } from '@vueuse/core';
 
@@ -100,35 +101,17 @@ const handleTurnPage = page => {
     font-size: $fs-base;
     margin-top: $m-2;
 }
-.services {
-    margin-top: $m-10;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: $g-7;
-    &__item {
-        z-index: 4;
-        border-radius: $br-8;
-        padding: $p-4;
-        box-shadow: $dc-shadow-inner;
-        transition: $tr-smooth;
-        &:hover {
-            box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.3);
+
+@media (width <= $screen-sm) {
+    .experience {
+        &__description {
+            font-size: $fs-smaller;
         }
     }
-    &__title {
-        display: block;
-        text-align: center;
-        font-weight: bold;
-        font-size: $fs-h6;
-        margin-block: $m-2_5;
-    }
-    &__text {
-        font-size: $fs-medium;
-    }
-    &__icon {
-        fill: $c-text;
-        margin-inline: auto;
+    .education,
+    .communication {
+        font-size: $fs-smaller;
+        margin-top: $m-3;
     }
 }
 </style>

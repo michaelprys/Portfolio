@@ -7,6 +7,9 @@
 <style lang="scss">
 .background-overlay {
     @include bg;
+    @supports (background-image: url('@img/decor/bg-overlay.avif')) {
+        background-image: url('@img/decor/bg-overlay.avif');
+    }
     background-image: url('@img/decor/bg-overlay.jpg');
     position: absolute;
     top: 0;

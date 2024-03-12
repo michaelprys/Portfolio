@@ -20,8 +20,8 @@
                                 srcset="@img/content/herbalist.avif"
                                 type="image/avif" />
                             <source
-                                srcset="@img/content/herbalist.webp"
-                                type="image/webp" />
+                                srcset="@img/content/herbalist.avif"
+                                type="image/avif" />
                             <img
                                 @mouseover="playVideo"
                                 @mouseleave="pauseVideo"
@@ -53,7 +53,7 @@
                             The website includes server-side pagination, a
                             custom server/database, and optimizations like
                             skeleton loaders. The website is responsive across
-                            all devices."
+                            all devices.
                         </p>
                     </div>
                     <a
@@ -73,7 +73,7 @@
             </ItemTurnBtn>
 
             <ItemTurnBtn v-else @click="dropPage">
-                <SvgBtnNext />
+                <SvgBtnDrop />
             </ItemTurnBtn>
         </div>
     </div>
@@ -82,7 +82,7 @@
 <script setup>
 import ItemTurnBtn from '@/component/ItemTurnBtn.vue';
 import SvgBtnPrev from '@/component/svg/SvgBtnPrev.vue';
-import SvgBtnNext from '@/component/svg/SvgBtnNext.vue';
+import SvgBtnDrop from '@/component/svg/SvgBtnDrop.vue';
 import SvgBtnDemo from '@/component/svg/SvgBtnDemo.vue';
 import { usePlayVideo } from '@/use/usePlayVideo';
 const { video, playVideo, pauseVideo } = usePlayVideo();
@@ -90,9 +90,7 @@ import { inject } from 'vue';
 import { useWindowSize } from '@vueuse/core';
 
 const { width: windowWidth } = useWindowSize();
-
 const props = defineProps(['dropPage']);
-
 const turnPage = inject('turnPage');
 
 const handleTurnPage = page => {
@@ -103,7 +101,7 @@ const handleTurnPage = page => {
 <style lang="scss">
 .project {
     &__general-wrapper {
-        min-height: 21.9rem;
+        min-height: 350.4px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -122,20 +120,20 @@ const handleTurnPage = page => {
         border-radius: $br-4;
         width: $w-64;
         margin-inline: auto;
-        border: 0.5rem solid rgba($c-text, 10%);
+        border: 8px solid rgba($c-text, 10%);
         transition: $tr-smooth;
-        box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 12.8px rgba(0, 0, 0, 0.3);
         &:hover {
-            box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
         }
     }
     &__img {
         position: absolute;
-        width: 16.0006rem;
-        height: 12.4838rem;
+        width: 256.0096px;
+        height: 199.7408px;
         filter: grayscale(60%);
-        border: 0.5rem solid rgba($c-text, 0%);
-        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+        border: 8px solid rgba($c-text, 0%);
+        box-shadow: inset 0rem 0rem 0.625rem rgba(0, 0, 0, 0.5);
         top: 50%;
         left: 50%;
         transform: translateY(-50%) translateX(-50%);
@@ -186,9 +184,9 @@ const handleTurnPage = page => {
             position: absolute;
             content: '';
             width: 100%;
-            height: 2px;
+            height: 0.125rem;
             background-color: rgba($c-text, 65%);
-            bottom: -2px;
+            bottom: -0.125rem;
             transform: scaleX(0);
             transition: transform $tr-fast;
             transform-origin: left;
@@ -216,6 +214,42 @@ const handleTurnPage = page => {
     &__code-btn,
     &__more-projects-btn {
         padding: $p-2;
+    }
+}
+
+@media (width <= $screen-sm) {
+    .project {
+        &__img {
+            width: 7.8125rem;
+            height: 100px;
+        }
+        &__demo-wrapper {
+            width: 100%;
+            height: 6.25rem;
+        }
+        &__video {
+            width: 12.5rem;
+            height: 6.25rem;
+        }
+        &__name {
+            font-size: $fs-h6;
+        }
+        &__info {
+            font-size: 14px;
+        }
+        &__tech {
+            font-size: 14px;
+        }
+        &__tech,
+        &__description-heading,
+        &__description {
+            font-size: 14px;
+        }
+        &__code-btn,
+        &__more-projects-btn {
+            font-size: $fs-smaller;
+            padding-block: 0.125rem;
+        }
     }
 }
 </style>

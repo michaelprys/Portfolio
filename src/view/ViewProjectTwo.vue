@@ -20,8 +20,8 @@
                                 srcset="@img/content/nuka-cola.avif"
                                 type="image/avif" />
                             <source
-                                srcset="@img/content/nuka-cola.webp"
-                                type="image/webp" />
+                                srcset="@img/content/nuka-cola.avif"
+                                type="image/avif" />
                             <img
                                 @mouseover="playVideo"
                                 @mouseleave="pauseVideo"
@@ -80,7 +80,7 @@
             </ItemTurnBtn>
 
             <ItemTurnBtn v-else @click="dropPage">
-                <SvgBtnNext />
+                <SvgBtnDrop />
             </ItemTurnBtn>
         </div>
     </div>
@@ -89,6 +89,7 @@
 <script setup>
 import ItemTurnBtn from '@/component/ItemTurnBtn.vue';
 import SvgBtnNext from '@/component/svg/SvgBtnNext.vue';
+import SvgBtnDrop from '@/component/svg/SvgBtnDrop.vue';
 import SvgBtnDemo from '@/component/svg/SvgBtnDemo.vue';
 import { usePlayVideo } from '@/use/usePlayVideo';
 import { inject } from 'vue';

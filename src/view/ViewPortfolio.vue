@@ -3,83 +3,79 @@
         <source src="@img/decor/bg.mp4" type="video/mp4" />
     </video>
     <ItemBgOverlay />
-    <div class="book-wrapper">
-        <div class="book-cover book-cover--left"></div>
-        <div
-            class="book-cover book-cover--right"
-            ref="coverRef"
-            :class="{
-                turn: pageStates.cover,
-            }"></div>
+    <div class="container">
+        <div class="book-wrapper">
+            <div class="book-cover book-cover--left"></div>
+            <div
+                class="book-cover book-cover--right"
+                ref="coverRef"
+                :class="{
+                    turn: pageStates.cover,
+                }"></div>
 
-        <div class="book">
-            <!-- Page 0 (intro) -->
-            <div class="book__page book__page--left">
-                <ViewIntro :turnAllPages="turnAllPages" />
-            </div>
-            <!-- Page 1 (front & back) -->
-            <div
-                class="book__page book__page--right"
-                :class="[
-                    {
+            <div class="book">
+                <!-- Page 0 (intro) -->
+                <div class="book__page book__page--left">
+                    <ViewIntro :turnAllPages="turnAllPages" />
+                </div>
+                <!-- Page 1 (front & back) -->
+                <div
+                    class="book__page book__page--right"
+                    :class="{
                         turn: pageStates.page1,
-                    },
-                ]"
-                ref="page1Ref">
-                <div class="book__page-front">
-                    <ViewAbout />
+                    }"
+                    ref="page1Ref">
+                    <div class="book__page-front">
+                        <ViewAbout />
+                    </div>
+                    <div class="book__page-back">
+                        <ViewServices />
+                    </div>
                 </div>
-                <div class="book__page-back">
-                    <ViewServices />
-                </div>
-            </div>
-            <!-- Page 2 (front & back) -->
-            <div
-                class="book__page book__page--right"
-                :class="[
-                    {
+                <!-- Page 2 (front & back) -->
+                <div
+                    class="book__page book__page--right"
+                    :class="{
                         turn: pageStates.page2,
-                    },
-                ]"
-                ref="page2Ref">
-                <div class="book__page-front">
-                    <ViewSkills />
+                    }"
+                    ref="page2Ref">
+                    <div class="book__page-front">
+                        <ViewSkills />
+                    </div>
+                    <div class="book__page-back">
+                        <ViewProjectOne />
+                    </div>
                 </div>
-                <div class="book__page-back">
-                    <ViewProjectOne />
-                </div>
-            </div>
-            <!-- Page 3 (front & back) -->
-            <div
-                class="book__page book__page--right"
-                :class="[
-                    {
+                <!-- Page 3 (front & back) -->
+                <div
+                    class="book__page book__page--right"
+                    :class="{
                         turn: pageStates.page3,
-                    },
-                ]"
-                ref="page3Ref">
-                <div class="book__page-front">
-                    <ViewProjectTwo />
+                    }"
+                    ref="page3Ref">
+                    <div class="book__page-front">
+                        <ViewProjectTwo />
+                    </div>
+                    <div class="book__page-back">
+                        <ViewMoreAboutMe />
+                    </div>
                 </div>
-                <div class="book__page-back">
-                    <ViewMoreAboutMe />
-                </div>
-            </div>
-            <!-- Page 4 (front & back) -->
-            <div
-                class="book__page book__page--right"
-                :class="[
-                    {
+                <!-- Page 4 (front & back) -->
+                <div
+                    class="book__page book__page--right"
+                    :class="{
                         turn: pageStates.page4,
-                    },
-                ]"
-                ref="page4Ref">
-                <div class="book__page-front">
-                    <ViewContact
-                        :turnAllPagesReversed="() => turnAllPagesReversed()" />
-                </div>
-                <div class="book__page-back">
-                    <ViewEnd />
+                    }"
+                    ref="page4Ref">
+                    <div class="book__page-front">
+                        <ViewContact
+                            :turnAllPagesReversed="
+                                () => turnAllPagesReversed()
+                            " />
+                    </div>
+                    <div class="book__page-back">
+                        <ViewEnd />
+                    </div>
                 </div>
             </div>
         </div>
@@ -135,8 +131,6 @@ const zIndexCounter = ref({
 
 const pages = Object.keys(pageStates.value);
 
-const isAnimationInProgress = ref(false);
-
 const turnPage = page => {
     pageStates.value[page] = !pageStates.value[page];
     setTimeout(() => {
@@ -148,6 +142,8 @@ const updateZIndex = page => {
     zIndexCounter.value[page] =
         Math.max(...Object.values(zIndexCounter.value)) + 1;
 };
+
+const isAnimationInProgress = ref(false);
 
 const turnAllPages = () => {
     if (!isAnimationInProgress.value) {
@@ -224,9 +220,10 @@ onMounted(async () => {
 }
 // book-wrapper
 .book-wrapper {
-    position: relative;
+    display: flex;
+    justify-content: center;
     border-radius: $br-8;
-    padding-inline: $p-20;
+    margin-inline: auto;
     width: 75rem;
     min-height: 50rem;
     animation: show-book 2s forwards;
@@ -257,8 +254,8 @@ onMounted(async () => {
     width: 50%;
     height: 100%;
     box-shadow: inset 0 0 30px 10px rgba(0, 0, 0, 0.2);
-    @supports (background-image: url('@img/decor/cover/book-texture.webp')) {
-        background-image: url('@img/decor/cover/book-texture.webp');
+    @supports (background-image: url('@img/decor/cover/book-texture.avif')) {
+        background-image: url('@img/decor/cover/book-texture.avif');
     }
     background-image: url('@img/decor/cover/book-texture.jpg');
     transform-origin: left;
@@ -286,22 +283,28 @@ onMounted(async () => {
 .book {
     &__overlay--left,
     &__overlay--right {
+        @include bg;
         position: absolute;
-        top: 2.5em;
         width: 560px;
         height: 720px;
     }
     &__overlay--left {
-        @include bg;
+        @supports (
+            background-image: url('@img/decor/content/content-left.avif')
+        ) {
+            background-image: url('@img/decor/content/content-left.avif');
+        }
         background-image: url('@img/decor/content/content-left.jpg');
         filter: drop-shadow(-11px 10px 11px rgba(0, 0, 0, 0.329));
-        left: calc(0% + 2.5em);
     }
     &__overlay--right {
-        @include bg;
+        @supports (
+            background-image: url('@img/decor/content/content-rightt.avif')
+        ) {
+            background-image: url('@img/decor/content/content-right.avif');
+        }
         background-image: url('@img/decor/content/content-right.jpg');
         filter: drop-shadow(11px 10px 11px rgba(0, 0, 0, 0.329));
-        right: calc(0% + 2.5em);
     }
     &__page-front,
     &__page-back {
@@ -366,18 +369,18 @@ onMounted(async () => {
         &--left {
             @include bg;
             @supports (
-                background-image: url('@img/decor/content/content-left.webp')
+                background-image: url('@img/decor/content/content-left.avif')
             ) {
-                background-image: url('@img/decor/content/content-left.webp');
+                background-image: url('@img/decor/content/content-left.avif');
             }
             background-image: url('@img/decor/content/content-left.jpg');
         }
         &--right {
             @include bg;
             @supports (
-                background-image: url('@img/decor/content/content-right.webp')
+                background-image: url('@img/decor/content/content-right.avif')
             ) {
-                background-image: url('@img/decor/content/content-right.webp');
+                background-image: url('@img/decor/content/content-right.avif');
             }
             background-image: url('@img/decor/content/content-right.jpg');
         }

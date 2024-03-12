@@ -48,7 +48,7 @@
             </ItemTurnBtn>
 
             <ItemTurnBtn v-else @click="dropPage">
-                <SvgBtnNext />
+                <SvgBtnDrop />
             </ItemTurnBtn>
         </div>
     </div>
@@ -57,7 +57,7 @@
 <script setup>
 import ItemTurnBtn from '@/component/ItemTurnBtn.vue';
 import SvgBtnPrev from '@/component/svg/SvgBtnPrev.vue';
-import SvgBtnNext from '@/component/svg/SvgBtnNext.vue';
+import SvgBtnDrop from '@/component/svg/SvgBtnDrop.vue';
 import { inject } from 'vue';
 import { useWindowSize } from '@vueuse/core';
 
@@ -84,6 +84,17 @@ const handleTurnPage = page => {
     &__fact {
         list-style: disc;
         margin-left: $p-5;
+    }
+}
+
+@media (width <= $screen-sm) {
+    .about {
+        font-size: 0.75rem;
+        &__subtitle {
+            font-size: $fs-small;
+        }
+        &__fact {
+        }
     }
 }
 </style>

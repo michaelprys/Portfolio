@@ -1,5 +1,7 @@
 <template>
-    <div class="book__overlay book__overlay--left"></div>
+    <div
+        class="book__overlay book__overlay--left"
+        v-if="windowWidth > 1280"></div>
     <div class="book__content book__content--left">
         <div class="book__content-inner">
             <div class="profile">
@@ -90,7 +92,7 @@
                 </div>
             </div>
             <ItemTurnBtn v-if="windowWidth < 1280" @click="dropPage()">
-                <SvgBtnNext />
+                <SvgBtnDrop />
             </ItemTurnBtn>
         </div>
     </div>
@@ -98,7 +100,7 @@
 
 <script setup>
 import ItemTurnBtn from '@/component/ItemTurnBtn.vue';
-import SvgBtnNext from '@/component/svg/SvgBtnNext.vue';
+import SvgBtnDrop from '@/component/svg/SvgBtnDrop.vue';
 import { useWindowSize } from '@vueuse/core';
 
 const { width: windowWidth } = useWindowSize();
@@ -114,8 +116,8 @@ const props = defineProps(['dropPage', 'turnAllPages']);
     &__avatar {
         position: relative;
         @include bg;
-        @supports (background-image: url('@img/decor/profile/avatar.webp')) {
-            background-image: url('@img/decor/profile/avatar.webp');
+        @supports (background-image: url('@img/decor/profile/avatar.avif')) {
+            background-image: url('@img/decor/profile/avatar.avif');
         }
         background-image: url('@img/decor/profile/avatar.jpg');
         margin-inline: auto;
@@ -188,13 +190,6 @@ const props = defineProps(['dropPage', 'turnAllPages']);
     }
 }
 
-@media (width <= $screen-xl) {
-    .profile {
-        &__buttons {
-            padding-inline: 5em;
-        }
-    }
-}
 @media (width <= $screen-sm) {
     .profile {
         &__avatar {
@@ -216,9 +211,15 @@ const props = defineProps(['dropPage', 'turnAllPages']);
         }
         &__link,
         &__button {
-            min-width: $w-24;
+            min-width: $w-20;
+            padding-block: $p-5;
+            font-size: $fs-smaller;
             line-height: 0;
+            margin-top: $m-5;
         }
     }
+}
+
+@media (width <= $screen-sm) {
 }
 </style>
