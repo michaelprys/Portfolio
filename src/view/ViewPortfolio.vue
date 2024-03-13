@@ -226,18 +226,7 @@ onMounted(async () => {
     margin-inline: auto;
     width: 75rem;
     min-height: 50rem;
-    animation: show-book 2s forwards;
-}
-@keyframes show-book {
-    0%,
-    30% {
-        opacity: 0;
-        transform: rotate(-20deg);
-    }
-    100% {
-        opacity: 1;
-        transform: rotate(0deg);
-    }
+    animation: show 2s forwards;
 }
 @keyframes show-bg {
     0% {
@@ -253,7 +242,6 @@ onMounted(async () => {
     background-color: $c-cover;
     width: 50%;
     height: 100%;
-    box-shadow: inset 0 0 30px 10px rgba(0, 0, 0, 0.2);
     @supports (background-image: url('@img/decor/cover/book-texture.avif')) {
         background-image: url('@img/decor/cover/book-texture.avif');
     }
@@ -391,7 +379,7 @@ onMounted(async () => {
     &__nav-icon {
         position: absolute;
         fill: lighten($c-text, 10%);
-        transition: $tr-smooth;
+        transition: fill $tr-smooth;
         border-radius: $br-circle;
         bottom: 18px;
         right: 18px;

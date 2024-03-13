@@ -2,7 +2,12 @@
     <div class="background-image"></div>
     <ItemBgOverlay />
     <div class="container">
-        <div class="tablet">
+        <div
+            class="tablet"
+            :class="{
+                'fade-in': isFadeInDone,
+                'show-tablet': isShowTabletDone,
+            }">
             <div class="tablet__cover">
                 <div class="tablet__clamp"></div>
                 <div class="tablet__overlay"></div>
@@ -59,9 +64,12 @@ import ViewMoreAboutMe from '@/view/ViewMoreAboutMe.vue';
 import ViewContact from '@/view/ViewContact.vue';
 // other imports
 import ItemBgOverlay from '@/component/ItemBgOverlay.vue';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import Sfx6 from '@/assets/sounds/page-shuffle.mp3?url';
 import { usePlaySfx } from '@/use/usePlaySfx';
+import { useWindowSize } from '@vueuse/core';
+
+const { width: windowWidth } = useWindowSize();
 
 const { playSfx } = usePlaySfx();
 
@@ -127,6 +135,22 @@ const turnAllPages = () => {
         playSfx(Sfx6);
     }
 };
+
+const isFadeInDone = ref(false);
+const isShowTabletDone = ref(false);
+
+const changeWidth = () => {
+    if (windowWidth.value <= 680) {
+        isFadeInDone.value = true;
+    } else {
+        isShowTabletDone.value = true;
+    }
+    console.log(windowWidth.value);
+};
+
+onMounted(() => {
+    changeWidth();
+});
 </script>
 
 <style lang="scss">
@@ -151,27 +175,13 @@ const turnAllPages = () => {
     position: relative;
     top: 0;
     left: 0;
-    width: 38em;
-    min-height: 50rem;
-    animation: show-tablet 2s forwards;
-    @keyframes show-tablet {
-        0%,
-        30% {
-            opacity: 0;
-            transform: rotate(-20deg);
-        }
-        100% {
-            opacity: 1;
-            transform: rotate(0deg);
-        }
+    width: 36em;
+    min-height: 51rem;
+    &.show-tablet {
+        animation: show 2s forwards;
     }
-    @keyframes show-bg {
-        0% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 0;
-        }
+    &.fade-in {
+        animation: fade-in 2s forwards;
     }
     &__overlay {
         @include bg;
@@ -179,15 +189,15 @@ const turnAllPages = () => {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        // width: 560px;
-        // height: 752px;
+        width: 512px;
+        height: 720px;
         @supports (
             background-image: url('@img/decor/content/content-left.avif')
         ) {
             background-image: url('@img/decor/content/content-left.avif');
         }
         background-image: url('@img/decor/content/content-left.jpg');
-        box-shadow: 0 0 20px 7px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.2);
     }
     &__cover {
         @include bg;
@@ -197,7 +207,7 @@ const turnAllPages = () => {
         background-color: $c-cover;
         width: 100%;
         height: 100%;
-        box-shadow: inset 0 0 30px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: $dc-shadow-card;
         @supports (
             background-image: url('@img/decor/cover/book-texture.avif')
         ) {
@@ -230,7 +240,7 @@ const turnAllPages = () => {
         width: 100%;
         height: 100%;
         padding-block: $p-10;
-        padding-inline: $p-10;
+        padding-inline: $p-6;
         transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
         &.fast-transition {
             transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -248,7 +258,7 @@ const turnAllPages = () => {
     &__nav-icon {
         position: absolute;
         fill: lighten(rgb(16, 16, 16), 15%);
-        transition: $tr-smooth;
+        transition: fill $tr-smooth;
         border-radius: $br-circle;
         bottom: 18px;
         right: 18px;
@@ -266,6 +276,7 @@ const turnAllPages = () => {
     .tablet {
         width: 28rem;
         min-height: 40rem;
+        animation: none;
         &__overlay {
             width: 408px;
             height: 593px;
@@ -275,7 +286,7 @@ const turnAllPages = () => {
                 background-image: url('@img/decor/content/content-left.avif');
             }
             background-image: url('@img/decor/content/content-left.jpg');
-            box-shadow: 0 0 20px 7px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 18px 3px rgba(0, 0, 0, 0.2);
         }
         &__clamp {
             top: -10%;
@@ -290,7 +301,7 @@ const turnAllPages = () => {
         }
     }
     .title {
-        font-size: $fs-base;
+        font-size: $fs-h5;
     }
     .subtitle {
         font-size: $fs-small;
@@ -300,6 +311,7 @@ const turnAllPages = () => {
     }
     .book__page-number {
         font-size: $fs-h6;
+        bottom: 16px;
     }
 }
 </style>

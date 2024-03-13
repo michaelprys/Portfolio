@@ -101,10 +101,10 @@ const handleTurnPage = page => {
 <style lang="scss">
 .project {
     &__general-wrapper {
-        min-height: 350.4px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        // min-height: 350.4px;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: space-between;
     }
     &__wrapper {
         display: flex;
@@ -121,15 +121,22 @@ const handleTurnPage = page => {
         width: $w-64;
         margin-inline: auto;
         border: 8px solid rgba($c-text, 10%);
-        transition: $tr-smooth;
+        transition: box-shadow $tr-smooth;
         box-shadow: 0 0 12.8px rgba(0, 0, 0, 0.3);
         &:hover {
             box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
         }
     }
+    &__demo-wrapper {
+        width: $w-64;
+        position: relative;
+    }
+    &__video {
+        filter: grayscale(40%);
+    }
     &__img {
         position: absolute;
-        width: 256.0096px;
+        width: 100%;
         height: 199.7408px;
         filter: grayscale(60%);
         border: 8px solid rgba($c-text, 0%);
@@ -141,13 +148,6 @@ const handleTurnPage = page => {
         &:hover {
             opacity: 0;
         }
-    }
-    &__demo-wrapper {
-        width: $w-64;
-        position: relative;
-    }
-    &__video {
-        filter: grayscale(40%);
     }
     &__name {
         font-size: $fs-h4;
@@ -176,7 +176,7 @@ const handleTurnPage = page => {
         align-items: center;
         gap: $g-2;
         color: $c-text;
-        transition: $tr-basic;
+        transition: fill $tr-basic;
         & svg {
             fill: $c-text;
         }
@@ -200,6 +200,7 @@ const handleTurnPage = page => {
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-top: $m-7;
         color: $c-text;
         border-radius: $br-6;
         background-color: #e3e3e37b;
@@ -219,17 +220,12 @@ const handleTurnPage = page => {
 
 @media (width <= $screen-sm) {
     .project {
-        &__img {
-            width: 7.8125rem;
-            height: 100px;
-        }
         &__demo-wrapper {
-            width: 100%;
-            height: 6.25rem;
+            margin-inline: auto;
+            width: 50%;
         }
-        &__video {
-            width: 12.5rem;
-            height: 6.25rem;
+        &__img {
+            height: 100%;
         }
         &__name {
             font-size: $fs-h6;
@@ -249,6 +245,7 @@ const handleTurnPage = page => {
         &__more-projects-btn {
             font-size: $fs-smaller;
             padding-block: 0.125rem;
+            margin-top: $m-3_5;
         }
     }
 }

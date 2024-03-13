@@ -114,11 +114,10 @@ const handleTurnPage = page => {
     grid-template-rows: 1fr 1fr;
     gap: $g-7;
     &__item {
-        z-index: 0;
         border-radius: $br-8;
         padding: $p-4;
         box-shadow: $dc-shadow-inner;
-        transition: $tr-smooth;
+        transition: box-shadow $tr-smooth;
         &:hover {
             box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.3);
         }
@@ -149,7 +148,7 @@ const handleTurnPage = page => {
             font-size: 0.75rem;
         }
         &__text {
-            font-size: 12px;
+            font-size: 0.8125rem;
         }
         &__icon {
             width: 1.5rem;

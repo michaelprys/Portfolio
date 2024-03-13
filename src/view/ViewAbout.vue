@@ -2,7 +2,7 @@
     <div class="book__content book__content--right">
         <div class="book__content-inner">
             <div class="experience">
-                <h1 class="title">Experience</h1>
+                <h1 class="title title--about">Experience</h1>
                 <span class="year">
                     <SvgCalendar />
                     2017-present</span
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="education">
-                <h1 class="title">Education</h1>
+                <h1 class="title title--about">Education</h1>
                 <span class="year">
                     <SvgCalendar />
                     2015-2019</span
@@ -29,7 +29,7 @@
                 </ul>
             </div>
             <div class="communication">
-                <h1 class="title">Communication</h1>
+                <h1 class="title title--about">Communication</h1>
                 <div class="subtitle">Languages</div>
                 <ul class="communication__info">
                     <li>English (Advanced)</li>

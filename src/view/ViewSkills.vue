@@ -138,7 +138,7 @@
                         <path
                             d="m18 14.33-.08-.06h-.12c-.26.07-.5.14-.47.8a1.9 1.9 0 0 0 .93.12 4.29 4.29 0 0 0 1.38-.29 3 3 0 0 0 .79-.52 3.47 3.47 0 0 1-2.43-.05z"></path>
                     </svg>
-                    PostgreSQL
+                    {{ windowWidth <= 680 ? 'Pg' : 'PostgreSQL' }}
                 </li>
             </ul>
             <h2 class="skills__subtitle">UI/UX</h2>
@@ -191,7 +191,7 @@
                         <path
                             d="M21 19.966V4.034h-6.654zM3 4.034v15.932L9.658 4.034zM9.092 16.76h3.104l1.268 3.205h2.778L12.003 9.904z"></path>
                     </svg>
-                    Adobe XD
+                    {{ windowWidth <= 680 ? 'XD' : 'Adobe XD' }}
                 </li>
             </ul>
             <span class="book__page-number">3</span>
@@ -247,7 +247,7 @@ const handleTurnPage = page => {
             min-width: 6.875rem;
             min-height: 70px;
             box-shadow: $dc-shadow-inner;
-            transition: $tr-smooth;
+            transition: box-shadow $tr-smooth;
             &:hover {
                 box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.3);
             }
@@ -271,15 +271,14 @@ const handleTurnPage = page => {
         &__list {
             margin-top: $m-4;
             & li {
-                font-size: 14px;
+                font-size: 15px;
                 min-height: 2.5rem;
-                width: rem;
-                padding-block: $p-1;
+                padding-block: 0.2em;
             }
         }
         &__icon {
-            width: 1.4rem;
-            height: 1.4rem;
+            width: 1.3rem;
+            height: 1.3rem;
         }
     }
 }

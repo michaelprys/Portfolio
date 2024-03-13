@@ -21,7 +21,8 @@
     background-color: $c-cover;
     color: $c-warm;
     font-size: $fs-medium;
-    transition: $tr-smooth;
+    transition: background-color $tr-smooth, border-color $tr-smooth,
+        color $tr-smooth;
     border: 2px solid transparent;
     font-family: $ff-primary;
     font-size: $fs-small;

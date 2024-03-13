@@ -93,8 +93,6 @@ const handleTurnPage = page => {
         &__subtitle {
             font-size: $fs-small;
         }
-        &__fact {
-        }
     }
 }
 </style>

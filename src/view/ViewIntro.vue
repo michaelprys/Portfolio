@@ -160,7 +160,7 @@ const props = defineProps(['dropPage', 'turnAllPages']);
     &__social-link {
         width: 2.3rem;
         height: 2.3rem;
-        transition: $tr-smooth;
+        transition: fill $tr-smooth;
         fill: $c-text;
         border-radius: $br-circle;
         outline: 2px solid transparent;
@@ -207,7 +207,7 @@ const props = defineProps(['dropPage', 'turnAllPages']);
             margin-top: $m-2_5;
         }
         &__buttons {
-            padding-inline: 2.6em;
+            padding-inline: 3.8em;
         }
         &__link,
         &__button {
@@ -218,8 +218,5 @@ const props = defineProps(['dropPage', 'turnAllPages']);
             margin-top: $m-5;
         }
     }
-}
-
-@media (width <= $screen-sm) {
 }
 </style>

@@ -21,6 +21,8 @@ $dc-shadow-dark: 8px 8px 18px $c-black;
 $dc-shadow-card: 0 6px 10px 0 rgba(0, 0, 0, 0.2);
 $dc-drop-shadow-card: 0 6px 10px 0 rgba(0, 0, 0, 0.2);
 $dc-shadow-inner: 0 0 0.6rem rgba(0, 0, 0, 0.2);
+$dc-shadow-inner-hard: inset 0 0 30px 3px rgba(0, 0, 0, 0.2);
+
 // Blur
 $dc-blur-hard: blur(20px);
 $dc-blur-light: blur(6px);
