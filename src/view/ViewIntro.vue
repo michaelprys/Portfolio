@@ -86,7 +86,7 @@
                     <button
                         type="button"
                         class="profile__button"
-                        @click="turnAllPages()">
+                        @click="toLastPage()">
                         Contact
                     </button>
                 </div>
@@ -104,7 +104,7 @@ import SvgBtnDrop from '@/component/svg/SvgBtnDrop.vue';
 import { useWindowSize } from '@vueuse/core';
 
 const { width: windowWidth } = useWindowSize();
-const props = defineProps(['dropPage', 'turnAllPages']);
+const props = defineProps(['dropPage', 'toLastPage']);
 </script>
 
 <style lang="scss">
@@ -181,7 +181,7 @@ const props = defineProps(['dropPage', 'turnAllPages']);
     }
     &__link,
     &__button {
-        @include btn;
+        @include btn-big;
         margin-top: $m-12;
         margin-inline: auto;
         min-width: $w-28;

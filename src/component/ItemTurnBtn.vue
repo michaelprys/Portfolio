@@ -1,5 +1,5 @@
 <template>
-    <button class="book__nav-btn" @click="handlePlaySfx">
+    <button @click="handlePlaySfx">
         <slot> </slot>
     </button>
 </template>

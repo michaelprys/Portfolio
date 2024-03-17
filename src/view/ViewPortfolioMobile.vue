@@ -12,40 +12,38 @@
                 <div class="tablet__clamp"></div>
                 <div class="tablet__overlay"></div>
                 <!-- Page 7 -->
-                <div class="tablet__page" ref="page7Ref" :style="dynamicStyle">
-                    <ViewContact
-                        :dropPage="() => dropPage('page7')"
-                        :turnAllPagesReversed="() => turnAllPagesReversed()" />
+                <div class="tablet__page" ref="page7Ref">
+                    <ViewContact :toIntroPage="() => toIntroPage()" />
                 </div>
                 <!-- Page 6 -->
-                <div class="tablet__page" ref="page6Ref" :style="dynamicStyle">
+                <div class="tablet__page" ref="page6Ref">
                     <ViewMoreAboutMe :dropPage="() => dropPage('page6')" />
                 </div>
                 <!-- Page 5 -->
-                <div class="tablet__page" ref="page5Ref" :style="dynamicStyle">
+                <div class="tablet__page" ref="page5Ref">
                     <ViewProjectTwo :dropPage="() => dropPage('page5')" />
                 </div>
                 <!-- Page 4 -->
-                <div class="tablet__page" ref="page4Ref" :style="dynamicStyle">
+                <div class="tablet__page" ref="page4Ref">
                     <ViewProjectOne :dropPage="() => dropPage('page4')" />
                 </div>
                 <!-- Page 3 -->
-                <div class="tablet__page" ref="page3Ref" :style="dynamicStyle">
+                <div class="tablet__page" ref="page3Ref">
                     <ViewSkills :dropPage="() => dropPage('page3')" />
                 </div>
                 <!-- Page 2 -->
-                <div class="tablet__page" ref="page2Ref" :style="dynamicStyle">
+                <div class="tablet__page" ref="page2Ref">
                     <ViewServices :dropPage="() => dropPage('page2')" />
                 </div>
                 <!-- Page 1 -->
-                <div class="tablet__page" ref="page1Ref" :style="dynamicStyle">
+                <div class="tablet__page" ref="page1Ref">
                     <ViewAbout :dropPage="() => dropPage('page1')" />
                 </div>
                 <!-- page 0 -->
-                <div class="tablet__page" ref="page0Ref" :style="dynamicStyle">
+                <div class="tablet__page" ref="page0Ref">
                     <ViewIntro
                         :dropPage="() => dropPage('page0')"
-                        :turnAllPages="turnAllPages" />
+                        :toLastPage="toLastPage" />
                 </div>
             </div>
         </div>
@@ -64,7 +62,7 @@ import ViewMoreAboutMe from '@/view/ViewMoreAboutMe.vue';
 import ViewContact from '@/view/ViewContact.vue';
 // other imports
 import ItemBgOverlay from '@/component/ItemBgOverlay.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watchEffect } from 'vue';
 import Sfx6 from '@/assets/sounds/page-shuffle.mp3?url';
 import { usePlaySfx } from '@/use/usePlaySfx';
 import { useWindowSize } from '@vueuse/core';
@@ -106,20 +104,28 @@ const pageRefs = [
 
 const pages = Object.keys(pageStates.value);
 
+// flag
+const isAnimationInProgress = ref(false);
+
+// dynamic styles
 const randomizePageFall = () => {
     return `rotateZ(${Math.floor(
-        Math.random() * (10 - -10) + -10
+        Math.random() * (3 - -7) + -7
     )}deg) translateY(150%)`;
 };
 
+const returnPagePosition = () => {
+    return `rotateZ(0deg) translateY(0%)`;
+};
+
+// dropPage
 const dropPage = page => {
     pageStates.value[page] = !pageStates.value[page];
     pageRefs[pages.indexOf(page)].value.style.transform = randomizePageFall();
 };
 
-const isAnimationInProgress = ref(false);
-
-const turnAllPages = () => {
+// to last page
+const toLastPage = () => {
     if (!isAnimationInProgress.value) {
         isAnimationInProgress.value = true;
         pages.slice(0, 7).forEach((page, index) => {
@@ -136,6 +142,49 @@ const turnAllPages = () => {
     }
 };
 
+// z-index
+const lastPageZIndex = ref(null);
+
+const updateZIndex = () => {
+    lastPageZIndex.value = 30;
+    setTimeout(() => {
+        lastPageZIndex.value = 'auto';
+    }, 1000);
+};
+
+// to intro page
+const toIntroPage = () => {
+    if (!isAnimationInProgress.value) {
+        isAnimationInProgress.value = true;
+        updateZIndex();
+        dropPage('page7');
+
+        const reversedPages = pages.slice(0, 7).reverse();
+        reversedPages.forEach(page => {
+            pageStates.value[page] = !pageStates.value[page];
+            pageRefs[pages.indexOf(page)].value.style.transition = 'none';
+            pageRefs[pages.indexOf(page)].value.style.transform =
+                returnPagePosition();
+
+            setTimeout(() => {
+                pageRefs[pages.indexOf(page)].value.style.transition =
+                    'transform 1s cubic-bezier(0.645, 0.045, 0.355, 1)';
+                pageRefs[pages.indexOf('page7')].value.style.transition =
+                    'none';
+                pageRefs[pages.indexOf('page7')].value.style.transform =
+                    returnPagePosition();
+                setTimeout(() => {
+                    pageRefs[pages.indexOf('page7')].value.style.transition =
+                        'transform 1s cubic-bezier(0.645, 0.045, 0.355, 1)';
+                }, 1000);
+                isAnimationInProgress.value = false;
+            }, 1000);
+        });
+    }
+    console.log(pageStates.value['page7']);
+};
+
+// animation state
 const isFadeInDone = ref(false);
 const isShowTabletDone = ref(false);
 
@@ -145,11 +194,14 @@ const changeWidth = () => {
     } else {
         isShowTabletDone.value = true;
     }
-    console.log(windowWidth.value);
 };
 
+// onMounted
 onMounted(() => {
     changeWidth();
+    watchEffect(() => {
+        pageRefs[7].value.style.zIndex = lastPageZIndex.value;
+    });
 });
 </script>
 

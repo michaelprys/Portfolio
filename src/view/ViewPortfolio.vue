@@ -16,7 +16,7 @@
             <div class="book">
                 <!-- Page 0 (intro) -->
                 <div class="book__page book__page--left">
-                    <ViewIntro :turnAllPages="turnAllPages" />
+                    <ViewIntro :toLastPage="toLastPage" />
                 </div>
                 <!-- Page 1 (front & back) -->
                 <div
@@ -68,10 +68,7 @@
                     }"
                     ref="page4Ref">
                     <div class="book__page-front">
-                        <ViewContact
-                            :turnAllPagesReversed="
-                                () => turnAllPagesReversed()
-                            " />
+                        <ViewContact :toIntroPage="() => toIntroPage()" />
                     </div>
                     <div class="book__page-back">
                         <ViewEnd />
@@ -145,7 +142,7 @@ const updateZIndex = page => {
 
 const isAnimationInProgress = ref(false);
 
-const turnAllPages = () => {
+const toLastPage = () => {
     if (!isAnimationInProgress.value) {
         isAnimationInProgress.value = true;
         pages.slice(0, 3).forEach((page, index) => {
@@ -162,7 +159,7 @@ const turnAllPages = () => {
     }
 };
 
-const turnAllPagesReversed = () => {
+const toIntroPage = () => {
     if (!isAnimationInProgress.value) {
         isAnimationInProgress.value = true;
         const reversedPages = pages.slice(0, 3).reverse();
@@ -377,19 +374,7 @@ onMounted(async () => {
         -webkit-user-drag: none;
     }
     &__nav-icon {
-        position: absolute;
-        fill: lighten($c-text, 10%);
-        transition: fill $tr-smooth;
-        border-radius: $br-circle;
-        bottom: 18px;
-        right: 18px;
-        cursor: pointer;
-        &:hover {
-            fill: $c-cover;
-        }
-        &.back {
-            left: 18px;
-        }
+        @include btn-small;
     }
 }
 // common

@@ -204,7 +204,7 @@ const handleTurnPage = page => {
         color: $c-text;
         border-radius: $br-6;
         background-color: #e3e3e37b;
-        @include btn;
+        @include btn-big;
     }
     &__code-btn {
         width: $w-20;
